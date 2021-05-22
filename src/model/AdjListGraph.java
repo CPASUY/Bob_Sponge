@@ -20,7 +20,7 @@ public class AdjListGraph<T> implements IGraph<T> {
 	}
 	@Override
 	public void addVertex(T element) {
-		if(searchInGraph(element)==null) {
+		if(!searchInGraph(element)) {
 			AdjVertex<T> v = new AdjVertex<T>(element);
 			adjList.put(element,v);
 			v.setIndex(numVertex);
@@ -29,11 +29,21 @@ public class AdjListGraph<T> implements IGraph<T> {
 		}
 	}
 	@Override
+	public void addEdge(T from, T to) {
+		if (!weighted) {
+			if(searchInGraph(from) && searchInGraph(to) ) {
+				AdjVertex<T> i = searchAdjVertex(from);
+				AdjVertex<T> d = searchAdjVertex(to);
+				addEdge(i, d,0);
+			}
+		}
+	}
+	@Override
 	public void addEdge(T from, T to, int weight) {
 		if (weighted) {
-			if(searchInGraph(from)!=null && searchInGraph(to)!=null ) {
-				AdjVertex<T> i = searchInGraph(from);
-				AdjVertex<T> d = searchInGraph(to);
+			if(searchInGraph(from) && searchInGraph(to) ) {
+				AdjVertex<T> i = searchAdjVertex(from);
+				AdjVertex<T> d = searchAdjVertex(to);
 				addEdge(i, d,weight);
 			}
 		}
@@ -49,8 +59,8 @@ public class AdjListGraph<T> implements IGraph<T> {
 	}
 	@Override
 	public boolean removeVertex(T element) {
-		if (searchInGraph(element)!=null) {
-			removeVertex(searchInGraph(element));
+		if (searchInGraph(element)) {
+			removeVertex(searchAdjVertex(element));
 			return true;
 		}
 		return false;
@@ -67,8 +77,8 @@ public class AdjListGraph<T> implements IGraph<T> {
 	}
 	@Override
 	public boolean removeEdge(T from, T to) {
-		if (searchInGraph(from)!=null && searchInGraph(to)!=null) {
-			removeEdge(searchInGraph(from),searchInGraph(to));
+		if (searchInGraph(from) && searchInGraph(to)) {
+			removeEdge(searchAdjVertex(from),searchAdjVertex(to));
 			return true;
 		}
 		return false;
@@ -107,9 +117,22 @@ public class AdjListGraph<T> implements IGraph<T> {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
-	public AdjVertex<T> searchInGraph(T element) {
+	public double[][] floyd_Warshall() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean searchInGraph(T element) {
+		AdjVertex<T> find=searchAdjVertex(element);
+		if(find!=null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	public AdjVertex<T> searchAdjVertex(T element) {
 		return adjList.get(element);
 	}
 
