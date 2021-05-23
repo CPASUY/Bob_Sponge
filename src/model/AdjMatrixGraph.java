@@ -1,12 +1,16 @@
 package model;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 public class AdjMatrixGraph<T> implements IGraph<T>{
 	private boolean directed;
 	private boolean weighted;
 	private int numVertex;
 	private int numEdges;
+	private boolean visited[];
+	private double distance[];
 	private double[][] adjMatrix;
 	private Map<Integer, Vertex<T>> vertices;
 	private Map<T, Integer> indexVertices;
@@ -15,12 +19,33 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 		directed = d;
 		weighted = w;
 		numVertex= 0;
+		numEdges=0;
+		visited=new boolean[n];
+		distance=new double[n];
 		adjMatrix=new double[n][n];
 		vertices=new HashMap<>();
 	    indexVertices=new HashMap<>();
 	}
+	public double[] getDistance() {
+		return distance;
+	}
+	public void setDistance(double[] distance) {
+		this.distance = distance;
+	}
+	public boolean[] getVisited() {
+		return visited;
+	}
+	public void setVisited(boolean[] visited) {
+		this.visited = visited;
+	}
 	@Override
 	public void addVertex(T element) {
+		if(!searchInGraph(element)) {
+			Vertex<T> vertex = new Vertex<T>(element);
+			vertices.put(numVertex,vertex);
+			indexVertices.put(element,numVertex);
+			numVertex++;
+		}
 	}
 	@Override
 	public void addEdge(T from, T to) {
@@ -58,7 +83,16 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	}
 	@Override
 	public boolean removeVertex(T element) {
-		// TODO Auto-generated method stub
+		if(searchIndex(element)!=null) {
+			Integer x=indexVertices.get(element);
+			indexVertices.remove(x);
+			vertices.remove(element);
+			for (int i=0;i<adjMatrix.length; i++) {
+				adjMatrix[i][x] = 0;
+				adjMatrix[x][i] = 0;
+			}
+			return true;
+		}
 		return false;
 	}
 
@@ -91,15 +125,39 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	}
 
 	@Override
-	public void bfs(AdjVertex<T> initialNode) {
-		// TODO Auto-generated method stub
-		
+	public void bfs(T initialNode) {
+		Queue<Vertex<T>> q= new LinkedList<>();
+		Vertex<T> v=searchVertex(initialNode);
+		q.add(v);
+		distance[v.getIndex()]=0;
+		while(!q.isEmpty()) {
+			Vertex<T> current = q.poll();
+			for (int i = 0; i <adjMatrix[current.getIndex()].length;i++) {
+				if(adjMatrix[current.getIndex()][i]!=0	) {
+					Vertex<T> neighbour= vertices.get(i);
+					if(distance[neighbour.getIndex()]==-1) {
+						distance[neighbour.getIndex()]=distance[current.getIndex()]+1;
+						q.add(neighbour);
+					}
+				}
+
+			}
+		}
 	}
 
 	@Override
-	public void dfs() {
-		// TODO Auto-generated method stub
-		
+	public void dfs(T initialNode) {
+		Vertex<T> vertex=searchVertex(initialNode);
+		Vertex<T> neighbour;
+		visited[vertex.getIndex()]=true;
+		for (int i = 0; i <adjMatrix[vertex.getIndex()].length;i++) {
+			if(adjMatrix[vertex.getIndex()][i]!=0) {
+				 neighbour= vertices.get(i);
+				if(!visited[neighbour.getIndex()]) {
+					dfs(neighbour.getValue());
+				}
+			}
+		}
 	}
 	@Override
 	public double[][] floyd_Warshall() {
@@ -126,6 +184,9 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 
 	public Vertex<T> searchVertex(T element) {
 		return vertices.get(element);
+	}
+	public Integer searchIndex(T element) {
+		return indexVertices.get(element);
 	}
 	public int getNumVertex() {
 		return numVertex;

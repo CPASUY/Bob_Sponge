@@ -1,6 +1,8 @@
 package model;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class AdjListGraph<T> implements IGraph<T> {
 
@@ -10,13 +12,24 @@ public class AdjListGraph<T> implements IGraph<T> {
 	private int numEdges;
 	private ArrayList<Vertex<T>> vertex;
 	private HashMap<T, AdjVertex<T>> adjList;
+	private boolean visited[];
+	private double distance[];
 	
-	public AdjListGraph(boolean d, boolean w) {
+	public AdjListGraph(boolean d, boolean w,int n) {
 		directed = d;
 		weighted = w;
 		numVertex = 0;
+		numEdges=0;
+		visited=new boolean[n];
+		distance=new double[n];
 		vertex= new ArrayList<Vertex<T>>();
 		adjList = new HashMap<>();
+	}
+	public boolean[] getVisited() {
+		return visited;
+	}
+	public void setVisited(boolean[] visited) {
+		this.visited = visited;
 	}
 	@Override
 	public void addVertex(T element) {
@@ -107,14 +120,36 @@ public class AdjListGraph<T> implements IGraph<T> {
 	}
 
 	@Override
-	public void bfs(AdjVertex<T> initialNode) {
-		// TODO Auto-generated method stub
+	public void bfs(T initialNode) {
+		AdjVertex<T> vertex=searchAdjVertex(initialNode);
+		AdjVertex<T> current;
+		AdjVertex<T> neighbour;
+		Queue<AdjVertex<T>> q=new LinkedList<>();
+		q.add(vertex);
+		distance[vertex.getIndex()]=0;
+		while(!q.isEmpty()) {
+			current=q.poll();
+			for(int s=0;s<current.getAdjList().size();s++) {
+				neighbour=current.getAdjList().get(s).getDestination();
+				if(distance[neighbour.getIndex()]==-1) {
+					distance[neighbour.getIndex()]=distance[current.getIndex()]+1;
+					q.add(neighbour);				}
+			}
+		}
 		
 	}
 
 	@Override
-	public void dfs() {
-		// TODO Auto-generated method stub
+	public void dfs(T initialNode) {
+		AdjVertex<T> vertex=searchAdjVertex(initialNode);
+		AdjVertex<T> neighbour;
+		visited[vertex.getIndex()]=true;
+		for(int s=0;s<vertex.getAdjList().size();s++) {
+			neighbour=vertex.getAdjList().get(s).getDestination();
+			if(!visited[neighbour.getIndex()]) {
+				dfs(neighbour.getValue());
+			}
+		}
 		
 	}
 	@Override

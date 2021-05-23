@@ -9,7 +9,7 @@ public interface IGraph<T>  {
 	public boolean isDirected();
 	public boolean isWeighted();
 	public boolean searchInGraph(T element);
-	public void bfs(AdjVertex<T> initialNode);
-	public void  dfs();
+	public void bfs(T initialNode);
+	public void  dfs(T initialNode);
 	public double[][] floyd_Warshall();
 }
