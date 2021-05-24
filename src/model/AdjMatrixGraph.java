@@ -171,6 +171,53 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 		}
 		return matrix;
 	}
+		
+	public void dijkstra(Vertex<T> from) {
+	
+		double flag[] = new double [numVertex+1];
+		double min;
+		int i,k,c;
+		int minpos = 0;
+		
+		//Pasamos la primera fila al arreglo distancia
+		for(i = 0;i<numVertex;i++) {
+			flag[i] = 0;
+			distance[i] = adjMatrix[from.getIndex()][i];
+		}
+		
+		//Retomamos de la segunda fila por que la primera ya la cogimos
+		c = 1;
+		
+		while(c < numVertex) {
+			min = 99;
+			for(k=0;k<numVertex;k++) {
+				if(distance[k]<min && flag[k] !=1) {
+					min = distance[i];
+					minpos = k;
+				}
+			}
+			flag[minpos] = 1;
+			c++;
+			
+			for(k=0;k<numVertex;k++) {
+				
+				if(distance[minpos] + adjMatrix[minpos][k]<distance[k] && flag[k]!=1) {
+					distance[k] = distance[minpos] + adjMatrix[minpos][k];
+				}
+			}
+			
+		}
+		
+		// Coste minimo para llegar a tal punto esta en el vector distance
+		for(int l=0;l<numVertex;l++) {
+			if(vertices.get(l) != from) {
+			System.out.println("Origin " + from.getValue() + " destine : " + vertices.get(l) + "minimal cost: "  + distance[i]);
+			}
+		}
+		
+	}
+	
+	
 	@Override
 	public boolean searchInGraph(T element) {
 		Vertex<T> vertex=searchVertex(element);
