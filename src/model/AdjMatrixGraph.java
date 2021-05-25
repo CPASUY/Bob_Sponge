@@ -1,4 +1,6 @@
 package model;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -12,6 +14,7 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	private boolean visited[];
 	private double distance[];
 	private double[][] adjMatrix;
+	private ArrayList <Edge<T>> edges;
 	private Map<Integer, Vertex<T>> vertices;
 	private Map<T, Integer> indexVertices;
 	
@@ -75,6 +78,7 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	            if (!isDirected()) {
 	            	adjMatrix[x][y] = weight;
 	            	adjMatrix[y][x] = weight;
+	            	edges.add(new Edge<T>(searchVertex(from),searchVertex(to),weight));
 	            } else {
 	            	adjMatrix[x][y] = weight;
 	            }
@@ -215,6 +219,48 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 			}
 		}
 		
+	}
+	
+	public void kruskal() {
+		int fathers[] = new int[100];
+		for(int i=0;i<fathers.length;i++) {
+			fathers[i] = i;
+		}
+		int totalWeight = 0;
+		int edgesGraph = 0;
+		int count = 0;
+		Collections.sort(edges);
+		int origin,destination,weight;
+		while(edgesGraph < numVertex-1 && count<numEdges) {
+			origin = edges.get(count).getInitialMatrix().getIndex();
+			destination = edges.get(count).getDestinationMatrix().getIndex();
+			weight = (int)edges.get(count).getWeight();
+			
+			if(find(origin,fathers) != find(destination,fathers)) {
+				unite(origin,destination,fathers);
+				totalWeight +=weight;
+				System.out.println(" " + origin + " ----->  " + destination + ": " + weight);
+				edgesGraph++;
+			}
+			count++;}
+		
+			if(edgesGraph != numVertex-1) {
+				System.out.println("El grafo no es valido");
+		}
+			System.out.println("El costo total minimo de es: " + totalWeight);
+	}
+	
+	private int find(int x,int[]fathers) {
+		if(fathers[x] == x) {
+			return x;
+		}
+		return find(fathers[x],fathers);
+	}
+	
+	private void unite(int x,int y,int[]fathers) {
+		int fx = find(x,fathers);
+		int fy = find(y,fathers);
+		fathers[fx] = fy;
 	}
 	
 	

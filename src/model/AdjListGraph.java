@@ -1,5 +1,6 @@
 package model;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -10,6 +11,7 @@ public class AdjListGraph<T> implements IGraph<T> {
 	private boolean weighted;
 	private int numVertex;
 	private int numEdges;
+	private ArrayList <Edge<T>> edges;
 	private ArrayList<Vertex<T>> vertex;
 	private HashMap<T, AdjVertex<T>> adjList;
 	private boolean visited[];
@@ -23,6 +25,7 @@ public class AdjListGraph<T> implements IGraph<T> {
 		visited=new boolean[n];
 		distance=new double[n];
 		vertex= new ArrayList<Vertex<T>>();
+		edges = new ArrayList<Edge<T>>();
 		adjList = new HashMap<>();
 	}
 	public boolean[] getVisited() {
@@ -67,6 +70,7 @@ public class AdjListGraph<T> implements IGraph<T> {
 			if (!isDirected()) {
 				edge = new Edge<T>(to, from, weight);
 				to.getAdjList().add(edge);
+				edges.add(edge);
 			}
 			numEdges++;
 	}
@@ -157,6 +161,49 @@ public class AdjListGraph<T> implements IGraph<T> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void kruskal() {
+		int fathers[] = new int[100];
+		for(int i=0;i<fathers.length;i++) {
+			fathers[i] = i;
+		}
+		int totalWeight = 0;
+		int edgesGraph = 0;
+		int count = 0;
+		Collections.sort(edges);
+		int origin,destination,weight;
+		while(edgesGraph < numVertex-1 && count<numEdges) {
+			origin = edges.get(count).getInitialMatrix().getIndex();
+			destination = edges.get(count).getDestinationMatrix().getIndex();
+			weight = (int)edges.get(count).getWeight();
+			
+			if(find(origin,fathers) != find(destination,fathers)) {
+				unite(origin,destination,fathers);
+				totalWeight +=weight;
+				System.out.println(" " + origin + " ----->  " + destination + ": " + weight);
+				edgesGraph++;
+			}
+			count++;}
+		
+			if(edgesGraph != numVertex-1) {
+				System.out.println("El grafo no es valido");
+		}
+			System.out.println("El costo total minimo de es: " + totalWeight);
+	}
+	
+	private int find(int x,int[]fathers) {
+		if(fathers[x] == x) {
+			return x;
+		}
+		return find(fathers[x],fathers);
+	}
+	
+	private void unite(int x,int y,int[]fathers) {
+		int fx = find(x,fathers);
+		int fy = find(y,fathers);
+		fathers[fx] = fy;
+	}
+	
 	@Override
 	public boolean searchInGraph(T element) {
 		AdjVertex<T> find=searchAdjVertex(element);
