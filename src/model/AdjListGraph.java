@@ -239,6 +239,29 @@ public class AdjListGraph<T> implements IGraph<T> {
 			System.out.println("El costo total minimo de es: " + totalWeight);
 	}
 	
+	public void prim(Vertex<T> from) {
+		AdjVertex<T> r = (AdjVertex<T>) from;
+		for(Vertex<T> u : vertex) {
+			distance[u.getIndex()]=99999;
+		}
+		distance[r.getIndex()]=0;
+		PriorityQueue<AdjVertex<T>> queue = new PriorityQueue<>();
+		for(Vertex<T> u: vertex) {
+			queue.add((AdjVertex<T>) u);
+		}
+		while(!queue.isEmpty()) {
+			AdjVertex<T> u = queue.poll();
+			for(Edge<T> e:u.getAdjList()) {
+				AdjVertex<T> v = (AdjVertex<T>) e.getDestination();
+				if(e.getWeight() < distance[v.getIndex()]) {
+					queue.remove(v);
+					distance[v.getIndex()]=e.getWeight();
+					queue.add(v);
+				}
+			}
+		}
+	}
+	
 	private int find(int x,int[]fathers) {
 		if(fathers[x] == x) {
 			return x;
