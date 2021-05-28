@@ -2,8 +2,11 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
 
 public class AdjListGraph<T> implements IGraph<T> {
 
@@ -14,6 +17,7 @@ public class AdjListGraph<T> implements IGraph<T> {
 	private ArrayList <Edge<T>> edges;
 	private ArrayList<Vertex<T>> vertex;
 	private HashMap<T, AdjVertex<T>> adjList;
+	private PriorityQueue<Vertex<T>> pq;
 	private boolean visited[];
 	private double distance[];
 	
@@ -161,6 +165,50 @@ public class AdjListGraph<T> implements IGraph<T> {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void dijkstra(Vertex<T> from) {
+		int distance[] = new int[numVertex]; 
+	    Set<Integer> visited = new HashSet<Integer>();;
+		pq = new PriorityQueue<Vertex<T>>();
+		 
+			for (int i = 0; i < numVertex; i++) {
+	            distance[i] = Integer.MAX_VALUE;
+		 }
+			pq.add(from);
+			distance[from.getIndex()] = 0;
+			while (visited.size() != numVertex) { 
+				 
+				   // u is removed from PriorityQueue and has min distance  
+				            int u = pq.remove().getIndex();
+				   
+				            // add node to finalized list (visited)
+				            visited.add(u); 
+				            graph_adjacentNodes(u,distance,visited); 
+				        } 
+	}
+	
+	private void graph_adjacentNodes(int u,int[]distance,Set<Integer> visited)   { 
+        int edgeDistance = -1; 
+        int newDistance = -1; 
+   
+        // process all neighbouring nodes of u 
+        for (int i = 0; i < adjList.get(u).getAdjList().size(); i++) { 
+            Edge<T> v = adjList.get(u).getAdjList().get(i); 
+            //  proceed only if current node is not in 'visited'
+            if (!visited.contains(v.getDestination().getIndex())) { 
+                edgeDistance = (int) v.getWeight(); 
+                newDistance = distance[u] + edgeDistance; 
+   
+                // compare distances 
+                if (newDistance < distance[v.getDestination().getIndex()]) 
+                    distance[v.getDestination().getIndex()] = newDistance; 
+   
+                // Add the current vertex to the PriorityQueue 
+                pq.add(v.getDestination()); 
+            } 
+        } 
+    } 
+
 	
 	public void kruskal() {
 		int fathers[] = new int[100];
