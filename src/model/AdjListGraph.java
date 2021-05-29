@@ -21,7 +21,6 @@ public class AdjListGraph<T> implements IGraph<T> {
 	private PriorityQueue<Vertex<T>> pq;
 	private boolean visited[];
 	private double distance[];
-	
 	public AdjListGraph(boolean d, boolean w,int n) {
 		directed = d;
 		weighted = w;
@@ -161,6 +160,36 @@ public class AdjListGraph<T> implements IGraph<T> {
 		}
 		
 	}
+	public double bfs(T initialNode,T finalNode) {
+		double shortPath=0;
+		AdjVertex<T> neighbour;
+		Queue<Vertex<T>> q= new LinkedList<>();
+		AdjVertex<T> current;
+		AdjVertex<T> initialV=searchAdjVertex(initialNode);
+		AdjVertex<T> finalV=searchAdjVertex(finalNode);
+		 for (int i=0; i <numVertex; i++) {
+	            visited[i] = false;
+	            distance[i] = Integer.MAX_VALUE;
+	        }
+		 visited[initialV.getIndex()] = true;
+	     distance[initialV.getIndex()] = 0;
+	     q.add(initialV);
+	     while (!q.isEmpty()) {
+	    	 current=(AdjVertex<T>) q.poll();
+	            for (int s=0;s<current.getAdjList().size();s++) {
+	            	neighbour=current.getAdjList().get(s).getDestination();
+	                if (visited[neighbour.getIndex()]==false) {
+	                    visited[neighbour.getIndex()] = true;
+	                    distance[neighbour.getIndex()] = distance[neighbour.getIndex()] + 1;
+	                    q.add(neighbour);
+	                    if (neighbour==finalV)
+	                        shortPath=distance[finalV.getIndex()];
+	                    return shortPath;
+	                }
+	            }
+	        }
+		return shortPath;
+	}
 	@Override
 	public double[][] floyd_Warshall() {
 		double[][] weights = getMatrixOfList();
@@ -189,8 +218,6 @@ public class AdjListGraph<T> implements IGraph<T> {
 		}
 		return weights;
 	}
-<<<<<<< HEAD
-=======
 	
 	public void dijkstra(Vertex<T> from) {
 		int distance[] = new int[numVertex]; 
@@ -236,7 +263,7 @@ public class AdjListGraph<T> implements IGraph<T> {
     } 
 
 	
->>>>>>> 6b937c271ced516fd3fc9cf05ecbf73d5796e6b8
+
 	public void kruskal() {
 		int fathers[] = new int[100];
 		for(int i=0;i<fathers.length;i++) {
