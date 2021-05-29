@@ -24,6 +24,8 @@ public class Main extends Application {
 		primaryStage.setTitle("Where is my Cangreburguer?");
 		bsc.initialize();
 		bsc.loadPlayGame();
+		bsc.initGameVertex();
+		bsc.initGameEdges();
 	}
 
 }

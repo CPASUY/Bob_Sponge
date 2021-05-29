@@ -1,6 +1,7 @@
 package model;
 
 public interface IGraph<T>  {
+	public static final int INFINITE = Integer.MAX_VALUE;
 	public void addVertex(T element);
 	public void addEdge(T from, T to);
 	public void addEdge(T from, T to,int weight);

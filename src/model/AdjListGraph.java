@@ -1,5 +1,6 @@
 package model;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -158,10 +159,32 @@ public class AdjListGraph<T> implements IGraph<T> {
 	}
 	@Override
 	public double[][] floyd_Warshall() {
-		// TODO Auto-generated method stub
-		return null;
+		double[][] weights = getMatrixOfList();
+		for (int k = 0; k < vertex.size(); k++) {
+			for (int i = 0; i < vertex.size(); i++) {
+				for (int j = 0; j <vertex.size(); j++) {
+					weights[i][j] = Math.min(weights[i][j], weights[i][k] + weights[k][j]);
+				}
+			}
+		}
+		return weights;
 	}
-	
+	public double [][] getMatrixOfList(){
+		double[][] weights = new double[vertex.size()][vertex.size()];
+		for (int i = 0; i < weights.length; i++) {
+			Arrays.fill(weights[i], INFINITE);
+		}
+		for (int i = 0; i < vertex.size(); i++) {
+			weights[i][i] = 0;
+			AdjVertex<T> ver = (AdjVertex<T>) vertex.get(i);
+			for (Edge<T> edge : ver.getAdjList()) {
+				AdjVertex<T> v = (AdjVertex<T>) edge.getDestination();
+				double weight = edge.getWeight();
+				weights[i][v.getIndex()] = weight;
+			}
+		}
+		return weights;
+	}
 	public void kruskal() {
 		int fathers[] = new int[100];
 		for(int i=0;i<fathers.length;i++) {
