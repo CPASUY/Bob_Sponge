@@ -2,7 +2,6 @@ package model;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class AdjMatrixGraph<T> implements IGraph<T>{
@@ -177,6 +176,7 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	
 		double flag[] = new double [numVertex+1];
 		double min;
+		double[] distance = new double[adjMatrix.length];
 		int i,k,c;
 		int minpos = 0;
 		
@@ -201,7 +201,6 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 			c++;
 			
 			for(k=0;k<numVertex;k++) {
-				
 				if(distance[minpos] + adjMatrix[minpos][k]<distance[k] && flag[k]!=1) {
 					distance[k] = distance[minpos] + adjMatrix[minpos][k];
 				}

@@ -3,8 +3,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Set;
 
 public class AdjListGraph<T> implements IGraph<T> {
 
@@ -15,6 +18,7 @@ public class AdjListGraph<T> implements IGraph<T> {
 	private ArrayList <Edge<T>> edges;
 	private ArrayList<Vertex<T>> vertex;
 	private HashMap<T, AdjVertex<T>> adjList;
+	private PriorityQueue<Vertex<T>> pq;
 	private boolean visited[];
 	private double distance[];
 	
@@ -185,6 +189,54 @@ public class AdjListGraph<T> implements IGraph<T> {
 		}
 		return weights;
 	}
+<<<<<<< HEAD
+=======
+	
+	public void dijkstra(Vertex<T> from) {
+		int distance[] = new int[numVertex]; 
+	    Set<Integer> visited = new HashSet<Integer>();;
+		pq = new PriorityQueue<Vertex<T>>();
+		 
+			for (int i = 0; i < numVertex; i++) {
+	            distance[i] = Integer.MAX_VALUE;
+		 }
+			pq.add(from);
+			distance[from.getIndex()] = 0;
+			while (visited.size() != numVertex) { 
+				 
+				   // u is removed from PriorityQueue and has min distance  
+				            int u = pq.remove().getIndex();
+				   
+				            // add node to finalized list (visited)
+				            visited.add(u); 
+				            graph_adjacentNodes(u,distance,visited); 
+				        } 
+	}
+	
+	private void graph_adjacentNodes(int u,int[]distance,Set<Integer> visited)   { 
+        int edgeDistance = -1; 
+        int newDistance = -1; 
+   
+        // process all neighbouring nodes of u 
+        for (int i = 0; i < adjList.get(u).getAdjList().size(); i++) { 
+            Edge<T> v = adjList.get(u).getAdjList().get(i); 
+            //  proceed only if current node is not in 'visited'
+            if (!visited.contains(v.getDestination().getIndex())) { 
+                edgeDistance = (int) v.getWeight(); 
+                newDistance = distance[u] + edgeDistance; 
+   
+                // compare distances 
+                if (newDistance < distance[v.getDestination().getIndex()]) 
+                    distance[v.getDestination().getIndex()] = newDistance; 
+   
+                // Add the current vertex to the PriorityQueue 
+                pq.add(v.getDestination()); 
+            } 
+        } 
+    } 
+
+	
+>>>>>>> 6b937c271ced516fd3fc9cf05ecbf73d5796e6b8
 	public void kruskal() {
 		int fathers[] = new int[100];
 		for(int i=0;i<fathers.length;i++) {
@@ -212,6 +264,29 @@ public class AdjListGraph<T> implements IGraph<T> {
 				System.out.println("El grafo no es valido");
 		}
 			System.out.println("El costo total minimo de es: " + totalWeight);
+	}
+	
+	public void prim(Vertex<T> from) {
+		AdjVertex<T> r = (AdjVertex<T>) from;
+		for(Vertex<T> u : vertex) {
+			distance[u.getIndex()]=99999;
+		}
+		distance[r.getIndex()]=0;
+		PriorityQueue<AdjVertex<T>> queue = new PriorityQueue<>();
+		for(Vertex<T> u: vertex) {
+			queue.add((AdjVertex<T>) u);
+		}
+		while(!queue.isEmpty()) {
+			AdjVertex<T> u = queue.poll();
+			for(Edge<T> e:u.getAdjList()) {
+				AdjVertex<T> v = (AdjVertex<T>) e.getDestination();
+				if(e.getWeight() < distance[v.getIndex()]) {
+					queue.remove(v);
+					distance[v.getIndex()]=e.getWeight();
+					queue.add(v);
+				}
+			}
+		}
 	}
 	
 	private int find(int x,int[]fathers) {
