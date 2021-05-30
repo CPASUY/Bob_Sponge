@@ -53,12 +53,12 @@ public class BobSpongeController {
 		listGraphMap.addVertex("Bob's House");
 		listGraphMap.addVertex("Squidward's House");
 		listGraphMap.addVertex("Patrick's House");
-		listGraphMap.addVertex("Krabby Crustacio");
 		listGraphMap.addVertex("Planton's Restaurant");
 		listGraphMap.addVertex("Vehicle School");
 		listGraphMap.addVertex("Scissors Shop");
 		listGraphMap.addVertex("Massage Shop");
 		listGraphMap.addVertex("Card Shop");
+		listGraphMap.addVertex("Krabby Crustacio");
 	}
 	public void initGameEdges() {
 		listGraphMap.addEdge("Bob's House", "Patrick's House",20);
@@ -162,6 +162,7 @@ public class BobSpongeController {
 	void clue3(ActionEvent event) {
 		initClue3Vertex();
 		initClue3Edges();
+		loadChallenge();
 	}
 	public void initClue3Vertex() {
 		listGraphClue.addVertex("Bob's Sponge");
