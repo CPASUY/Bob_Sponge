@@ -13,30 +13,33 @@
             <Image url="@../../images/Places/Challenge.png" />
          </image>
       </ImageView>
-      <Button layoutX="356.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="46.0">
+      <Button layoutX="344.0" layoutY="51.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="46.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="464.0" layoutY="51.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="39.0">
+      <Button layoutX="437.0" layoutY="75.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="39.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="266.0" layoutY="165.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="39.0">
+      <Button layoutX="261.0" layoutY="110.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="39.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="477.0" layoutY="243.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="46.0">
+      <Button layoutX="356.0" layoutY="220.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="46.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="356.0" layoutY="268.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="30.0">
+      <Button layoutX="266.0" layoutY="249.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="30.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button layoutX="508.0" layoutY="116.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="46.0" />
+      <Button layoutX="431.0" layoutY="207.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="46.0" />
+      <Button layoutX="505.0" layoutY="260.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="39.0" />
    </children>
 </Pane>
