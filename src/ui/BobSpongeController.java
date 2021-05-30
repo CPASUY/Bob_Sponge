@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.AdjListGraph;
@@ -30,9 +31,24 @@ public class BobSpongeController {
 	@FXML
 	private TableColumn<User<String>, Double> idScore;
 	private Stage stage;
+
+	private AdjListGraph<String> listGraph;
+	@FXML
+	private Rectangle rectangleBOB;
+	private Rectangle rectangleBurger;
+	private Rectangle rectanglePactrick;
+	private Rectangle rectangleMassage;
+	private Rectangle rectangleCalam;
+	private Rectangle rectangleScissor;
+	private Rectangle rectangleSchool;
+	private Rectangle rectangleBucket;
+	private Rectangle rectangleCards;
+	
+
 	private AdjListGraph<String> listGraphMap;
 	private AdjListGraph<String> listGraphClue;
 	private UserManagment<String> um;
+
 
 	public BobSpongeController(Stage s) throws IOException {
 		stage=s;
@@ -189,6 +205,11 @@ public class BobSpongeController {
 	@FXML
 	void exitGame(ActionEvent event) {
 
+	}
+	
+	@FXML
+	void buttonBOB(ActionEvent event) {
+		rectangleBOB.setVisible(true);
 	}
 
 }
