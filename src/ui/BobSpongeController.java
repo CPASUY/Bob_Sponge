@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.AdjListGraph;
@@ -18,6 +19,16 @@ public class BobSpongeController {
 	private BorderPane basePane;
 	private Stage stage;
 	private AdjListGraph<String> listGraph;
+	@FXML
+	private Rectangle rectangleBOB;
+	private Rectangle rectangleBurger;
+	private Rectangle rectanglePactrick;
+	private Rectangle rectangleMassage;
+	private Rectangle rectangleCalam;
+	private Rectangle rectangleScissor;
+	private Rectangle rectangleSchool;
+	private Rectangle rectangleBucket;
+	private Rectangle rectangleCards;
 	
 	public BobSpongeController(Stage s) throws IOException {
 		stage=s;
@@ -122,6 +133,11 @@ public class BobSpongeController {
 	@FXML
 	void exitGame(ActionEvent event) {
 
+	}
+	
+	@FXML
+	void buttonBOB(ActionEvent event) {
+		rectangleBOB.setVisible(true);
 	}
 
 }

@@ -5,58 +5,16 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="686.0" prefWidth="1009.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="163.0" layoutY="105.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button layoutX="286.0" layoutY="118.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button layoutX="413.0" layoutY="131.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="42.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="114.0" layoutY="175.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="260.0" layoutY="188.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="402.0" layoutY="201.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="336.0" layoutY="262.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="59.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="234.0" layoutY="272.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="42.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="128.0" layoutY="269.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="59.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <ImageView fitHeight="414.0" fitWidth="608.0" layoutX="-4.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="693.0" fitWidth="1039.0" layoutX="-4.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/Places/Map.png" />
          </image>
       </ImageView>
-      <Button layoutX="103.0" layoutY="361.0" mnemonicParsing="false" onAction="#clue1" scaleX="0.8" scaleY="0.8">
+      <Button layoutX="309.0" layoutY="627.0" mnemonicParsing="false" onAction="#clue1" scaleX="0.8" scaleY="0.8">
          <graphic>
             <ImageView fitHeight="18.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" scaleX="2.2" scaleY="2.5">
                <image>
@@ -68,7 +26,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="210.0" layoutY="362.0" mnemonicParsing="false" onAction="#clue2" scaleX="0.8" scaleY="0.8">
+      <Button layoutX="452.0" layoutY="628.0" mnemonicParsing="false" onAction="#clue2" scaleX="0.8" scaleY="0.8">
          <graphic>
             <ImageView fitHeight="15.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" scaleX="2.5" scaleY="3.0">
                <image>
@@ -80,7 +38,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="310.0" layoutY="362.0" mnemonicParsing="false" onAction="#clue3" scaleX="0.8" scaleY="0.8">
+      <Button layoutX="578.0" layoutY="628.0" mnemonicParsing="false" onAction="#clue3" scaleX="0.8" scaleY="0.8">
          <graphic>
             <ImageView fitHeight="16.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" scaleX="2.5" scaleY="2.8">
                <image>
@@ -92,7 +50,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="428.0" layoutY="361.0" mnemonicParsing="false" onAction="#exitGame" scaleX="0.6" scaleY="0.6">
+      <Button layoutX="708.0" layoutY="628.0" mnemonicParsing="false" onAction="#exitGame" scaleX="0.6" scaleY="0.6">
          <graphic>
             <ImageView fitHeight="19.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" scaleX="4.0" scaleY="5.0">
                <image>
@@ -104,5 +62,57 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Rectangle fx:id="rectangleBOB" fill="WHITE" height="123.0" layoutX="213.0" layoutY="402.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="114.0" />
+      <Rectangle fx:id="rectangleCalam" fill="WHITE" height="116.0" layoutX="384.0" layoutY="412.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="114.0" />
+      <Rectangle fx:id="rectangleMassage" fill="WHITE" height="129.0" layoutX="529.0" layoutY="395.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="160.0" />
+      <Rectangle fx:id="rectanglePactrick" fill="WHITE" height="85.0" layoutX="656.0" layoutY="311.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="129.0" />
+      <Rectangle fx:id="rectangleCards" fill="WHITE" height="103.0" layoutX="251.0" layoutY="134.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="150.0" />
+      <Rectangle fx:id="rectangleBucket" fill="WHITE" height="136.0" layoutX="466.0" layoutY="119.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="114.0" />
+      <Rectangle fx:id="rectangleBurger" fill="WHITE" height="85.0" layoutX="670.0" layoutY="195.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="114.0" />
+      <Rectangle fx:id="rectangleSchool" fill="WHITE" height="91.0" layoutX="420.0" layoutY="280.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="150.0" />
+      <Rectangle fx:id="rectangleScissor" fill="WHITE" height="91.0" layoutX="152.0" layoutY="267.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="180.0" />
+      <Button layoutX="249.0" layoutY="528.0" mnemonicParsing="false" onAction="#buttonBOB" prefHeight="25.0" prefWidth="40.0" text="Go">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="414.0" layoutY="528.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="42.0" text="Go">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="594.0" layoutY="528.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="703.0" layoutY="400.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="475.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="299.0" layoutY="237.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="703.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button layoutX="224.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+         <cursor>
+            <Cursor fx:constant="CLOSED_HAND" />
+         </cursor></Button>
+      <Button layoutX="500.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
    </children>
 </Pane>

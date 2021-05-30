@@ -18,7 +18,7 @@ public class Main extends Application {
 		BobSpongeController bsc=new BobSpongeController(primaryStage);
 		fxmload.setController(bsc);
 		Parent root=fxmload.load();
-		Scene scene = new Scene(root,676,481);
+		Scene scene = new Scene(root,1009,686);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		primaryStage.setTitle("Where is my Cangreburguer?");
