@@ -8,38 +8,15 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="438.0" fitWidth="635.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/Places/Challenge.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="344.0" layoutY="51.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="46.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="437.0" layoutY="75.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="39.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="261.0" layoutY="110.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="39.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="356.0" layoutY="220.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="46.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Button layoutX="266.0" layoutY="249.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="30.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="508.0" layoutY="116.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="46.0" />
-      <Button layoutX="431.0" layoutY="207.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="46.0" />
-      <Button layoutX="505.0" layoutY="260.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="39.0" />
+      <ImageView fitHeight="438.0" fitWidth="635.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/Places/Challenge.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
