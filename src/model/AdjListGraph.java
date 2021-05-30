@@ -54,7 +54,7 @@ public class AdjListGraph<T> implements IGraph<T> {
 			if(searchInGraph(from) && searchInGraph(to) ) {
 				AdjVertex<T> i = searchAdjVertex(from);
 				AdjVertex<T> d = searchAdjVertex(to);
-				addEdge(i, d,0);
+				addEdge(i, d,1);
 			}
 		}
 	}
