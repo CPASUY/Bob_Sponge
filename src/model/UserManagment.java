@@ -18,13 +18,13 @@ public class UserManagment <T> implements Serializable{
 	public static final String USERS_FILE_NAME="data/Users.bbd";
 
 	public UserManagment() {
-		try {
+		/*try {
 			loadRootUsers();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 	
 	public void addPlayer(User <T> u)  {

@@ -23,9 +23,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.AdjListGraph;
+import model.AdjVertex;
 import model.User;
 import model.UserManagment;
-import model.Vertex;
 
 
 public class BobSpongeController {
@@ -60,12 +60,10 @@ public class BobSpongeController {
 	private Rectangle rectangleBucket;
 	@FXML
 	private Rectangle rectangleCards;
-	
 	User<String> user;
 	private AdjListGraph<String> listGraphMap;
 	private AdjListGraph<String> listGraphClue;
 	private UserManagment<String> um;
-	private User<String> user;
 
 
 	public BobSpongeController(Stage s) throws IOException {
@@ -76,21 +74,12 @@ public class BobSpongeController {
 	}
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			
-			@Override
-			public void handle(WindowEvent event) {
-				System.out.println("Closing the window!");
-				try {
-					um.saveRootUsers();
-				} catch (FileNotFoundException e) {
-					
-				} catch (IOException e) {
-					
-					e.printStackTrace();
+	
+				@Override
+				public void handle(WindowEvent event) {
+					System.out.println("Closing the window!");
 				}
-			}
-		});
-
+			});
 	}
 	public void initGameVertex() {
 		listGraphMap.addVertex("Bob's House");
@@ -168,8 +157,6 @@ public class BobSpongeController {
 			root = fxmload.load();
 			basePane.getChildren().clear();
 			basePane.setCenter(root);
-			user = new User<String>(textNickname.getText(),0);
-			user.setInitialMap((AdjVertex<String>) listGraphMap.getVertex().get(1));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -193,13 +180,14 @@ public class BobSpongeController {
 	@FXML
 	void nextSignUp(ActionEvent event) {
 		String n=textNickname.getText();
-    	if(n.isEmpty()) {
+		if(n.isEmpty()) {
     		Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Empty space");
 			alert.setHeaderText("You must fill in the blank");
 			alert.setContentText("Check that you have entered a nickname");
     	}else {
-    		user=new User<String>(n,0);
+    		user = new User<String>(textNickname.getText(),0);
+    		user.setInitialMap((AdjVertex<String>) listGraphMap.getVertex().get(0));
     		um.addPlayer(user);
     		loadMap();
     	}
@@ -269,9 +257,7 @@ public class BobSpongeController {
 	 }
 	 @FXML
 	 void clue1(ActionEvent event) {
-		 Vertex<String> v1=listGraphMap.getVertex().get(0);
-		 Vertex<String> v2=listGraphMap.getVertex().get(8);
-		 System.out.println(listGraphMap.dijkstra(v1,v2));
+
 	}
 
 	@FXML
@@ -302,11 +288,12 @@ public class BobSpongeController {
 		listGraphClue.addEdge("Patricio", "Gary");
 		listGraphClue.addEdge("Gary", "Calamardo");
 		listGraphClue.addEdge("Calamardo", "Larry");
-		listGraphClue.addEdge("Calamardo", "Planton");
-		listGraphClue.addEdge("Planton","Perlita");
-		listGraphClue.addEdge("Planton", "Larry");
+		listGraphClue.addEdge("Calamardo", "Eugene");
+		listGraphClue.addEdge("Eugene","Perlita");
+		listGraphClue.addEdge("Eugene", "Larry");
 		listGraphClue.addEdge("Larry", "Perlita");
-		listGraphClue.addEdge("Perlita", "Eugene");
+		listGraphClue.addEdge("Perlita", "Planton");
+		listGraphClue.addEdge("Planton", "Larry");
 	}
 	@FXML
 	void exitGame(ActionEvent event) {

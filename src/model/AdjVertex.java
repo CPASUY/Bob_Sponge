@@ -1,8 +1,8 @@
 package model;
-
 import java.util.ArrayList;
 
-public class AdjVertex<T>  extends Vertex<T>{
+public class AdjVertex<T>  extends Vertex<T> {
+	
 	private ArrayList<Edge<T>> edgesList;
 
 	public AdjVertex(T value) {

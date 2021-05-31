@@ -1,14 +1,8 @@
 package model;
 
-<<<<<<< HEAD
 import java.io.Serializable;
-
-public class User <T> implements Serializable{
-=======
 import java.util.ArrayList;
-
-public class User <T> {
->>>>>>> d113783797c74f953c3108039cc52c05233a5fa5
+public class User <T> implements Serializable{
 	
 	/**
 	 * 
