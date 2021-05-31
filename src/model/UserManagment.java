@@ -1,15 +1,33 @@
 package model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserManagment <T>{
+public class UserManagment <T> implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private User<T> root;
+	public static final String USERS_FILE_NAME="data/Users.bbd";
 
 	public UserManagment() {
+		try {
+			loadRootUsers();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public void addPlayer(String name,double score)  {
-		User <T> u=new User<T>(name,score);
+	public void addPlayer(User <T> u)  {
 		if(root== null) {
 			root = u;
 		}else {
@@ -49,5 +67,19 @@ public class UserManagment <T>{
 			showList(current.getLeft(),users);
 		}
 		return users;
+	}
+	public void saveRootUsers() throws IOException {
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(USERS_FILE_NAME));
+		oos.writeObject(root);
+		oos.close();
+	}
+	@SuppressWarnings("unchecked")
+	public void loadRootUsers() throws IOException, ClassNotFoundException{	
+		File f=new File(USERS_FILE_NAME);
+		if(f.exists()) {
+			ObjectInputStream ois= new ObjectInputStream(new FileInputStream(f));
+			root=(User<T>)ois.readObject();
+			ois.close();
+		}
 	}
 }

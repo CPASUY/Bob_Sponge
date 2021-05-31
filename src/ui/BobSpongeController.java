@@ -1,6 +1,8 @@
 package ui;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,16 +11,17 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.AdjListGraph;
-import model.AdjVertex;
 import model.User;
 import model.UserManagment;
 import model.Vertex;
@@ -53,6 +56,7 @@ public class BobSpongeController {
 	private AdjListGraph<String> listGraphMap;
 	private AdjListGraph<String> listGraphClue;
 	private UserManagment<String> um;
+	private User<String> user;
 
 
 	public BobSpongeController(Stage s) throws IOException {
@@ -63,12 +67,21 @@ public class BobSpongeController {
 	}
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-
+			
 			@Override
 			public void handle(WindowEvent event) {
 				System.out.println("Closing the window!");
+				try {
+					um.saveRootUsers();
+				} catch (FileNotFoundException e) {
+					
+				} catch (IOException e) {
+					
+					e.printStackTrace();
+				}
 			}
 		});
+
 	}
 	public void initGameVertex() {
 		listGraphMap.addVertex("Bob's House");
@@ -168,7 +181,17 @@ public class BobSpongeController {
 	}
 	@FXML
 	void nextSignUp(ActionEvent event) {
-		loadMap();
+		String n=textNickname.getText();
+    	if(n.isEmpty()) {
+    		Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Empty space");
+			alert.setHeaderText("You must fill in the blank");
+			alert.setContentText("Check that you have entered a nickname");
+    	}else {
+    		user=new User<String>(n,0);
+    		um.addPlayer(user);
+    		loadMap();
+    	}
 	}
 	@FXML
 	void nextClue3(ActionEvent event) {
@@ -276,7 +299,7 @@ public class BobSpongeController {
 	}
 	@FXML
 	void exitGame(ActionEvent event) {
-
+		loadPlayGame();
 	}
 	
 	@FXML
