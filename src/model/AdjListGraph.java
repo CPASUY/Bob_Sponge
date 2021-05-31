@@ -345,5 +345,6 @@ public class AdjListGraph<T> implements IGraph<T> {
 	public AdjVertex<T> searchAdjVertex(T element) {
 		return adjList.get(element);
 	}
+	
 
 }
