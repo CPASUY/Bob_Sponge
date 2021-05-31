@@ -175,9 +175,10 @@ public class AdjListGraph<T> implements IGraph<T> {
 		AdjVertex<T> finalV=searchAdjVertex(finalNode);
 		 for (int i=0; i <numVertex; i++) {
 	            visited[i] = false;
-	            distance[i] = 1;
+	            distance[i] = INFINITE;
 	        }
 		 visited[initialV.getIndex()] = true;
+		 distance[initialV.getIndex()] = 0;
 	     q.add(initialV);
 	     while (!q.isEmpty()) {
 	    	 current=(AdjVertex<T>) q.poll();
@@ -185,10 +186,10 @@ public class AdjListGraph<T> implements IGraph<T> {
 	            	neighbour=current.getAdjList().get(s).getDestination();
 	                if (visited[neighbour.getIndex()]==false) {
 	                    visited[neighbour.getIndex()] = true;
-	                    shortPath =  shortPath + 1;
+	                    distance[neighbour.getIndex()]=distance[current.getIndex()]+1;
 	                    q.add(neighbour);
 	                    if (neighbour==finalV) {
-	                    return shortPath;
+	                    return distance[finalV.getIndex()];
 	                    }
 	                }
 	            }

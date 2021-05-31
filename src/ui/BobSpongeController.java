@@ -26,6 +26,7 @@ import model.AdjListGraph;
 import model.AdjVertex;
 import model.User;
 import model.UserManagment;
+import model.Vertex;
 
 
 public class BobSpongeController {
@@ -257,7 +258,6 @@ public class BobSpongeController {
 	 }
 	 @FXML
 	 void clue1(ActionEvent event) {
-
 	}
 
 	@FXML
@@ -271,7 +271,7 @@ public class BobSpongeController {
 		initClue3Edges();
 		loadChallenge();
 		System.out.println("AQUI");
-		System.out.println(listGraphClue.bfs("Bob's Sponge", "Gary"));
+		System.out.println(listGraphClue.bfs("Bob's Sponge","Eugene"));
 	}
 	public void initClue3Vertex() {
 		listGraphClue.addVertex("Bob's Sponge");
@@ -288,12 +288,11 @@ public class BobSpongeController {
 		listGraphClue.addEdge("Patricio", "Gary");
 		listGraphClue.addEdge("Gary", "Calamardo");
 		listGraphClue.addEdge("Calamardo", "Larry");
-		listGraphClue.addEdge("Calamardo", "Eugene");
-		listGraphClue.addEdge("Eugene","Perlita");
-		listGraphClue.addEdge("Eugene", "Larry");
+		listGraphClue.addEdge("Calamardo", "Planton");
+		listGraphClue.addEdge("Planton","Perlita");
+		listGraphClue.addEdge("Planton","Larry");
 		listGraphClue.addEdge("Larry", "Perlita");
-		listGraphClue.addEdge("Perlita", "Planton");
-		listGraphClue.addEdge("Planton", "Larry");
+		listGraphClue.addEdge("Perlita", "Eugene");
 	}
 	@FXML
 	void exitGame(ActionEvent event) {
