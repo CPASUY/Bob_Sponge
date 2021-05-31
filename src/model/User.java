@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 public class User <T> {
 	
 	private String nickname;
@@ -79,5 +81,12 @@ public class User <T> {
 	public void setScore(double score) {
 		this.score = score;
 	}
-
+	
+	public ArrayList<AdjVertex<T>> adj() {
+		ArrayList<AdjVertex<T>> d = new ArrayList<AdjVertex<T>>();
+		for (int i=0; i<initialMap.getAdjList().size(); i++) {
+				d.add(initialMap.getAdjList().get(i).getDestination());
+		}
+		return d;
+	}
 }

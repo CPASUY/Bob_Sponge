@@ -76,41 +76,41 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="414.0" layoutY="528.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="42.0" text="Go">
+      <Button layoutX="414.0" layoutY="528.0" mnemonicParsing="false" onAction="#buttonCalam" prefHeight="25.0" prefWidth="42.0" text="Go">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="594.0" layoutY="528.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+      <Button layoutX="594.0" layoutY="528.0" mnemonicParsing="false" onAction="#buttonMassage" prefHeight="25.0" prefWidth="40.0" text="Go">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="703.0" layoutY="400.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+      <Button layoutX="703.0" layoutY="400.0" mnemonicParsing="false" onAction="#buttonPactrick" prefHeight="25.0" prefWidth="40.0" text="Go">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="475.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+      <Button layoutX="475.0" layoutY="374.0" mnemonicParsing="false" onAction="#buttonSchool" prefHeight="25.0" prefWidth="40.0" text="Go">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="299.0" layoutY="237.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+      <Button layoutX="299.0" layoutY="237.0" mnemonicParsing="false" onAction="#buttonCards" prefHeight="25.0" prefWidth="40.0" text="Go">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="703.0" layoutY="280.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+      <Button layoutX="703.0" layoutY="280.0" mnemonicParsing="false" onAction="#buttonBurguer" prefHeight="25.0" prefWidth="40.0" text="Go">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="224.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+      <Button layoutX="224.0" layoutY="361.0" mnemonicParsing="false" onAction="#buttonScissor" prefHeight="25.0" prefWidth="40.0" text="Go">
          <cursor>
             <Cursor fx:constant="CLOSED_HAND" />
          </cursor></Button>
-      <Button layoutX="500.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0" text="Go">
+      <Button layoutX="500.0" layoutY="250.0" mnemonicParsing="false" onAction="#buttonBucket" prefHeight="25.0" prefWidth="40.0" text="Go">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

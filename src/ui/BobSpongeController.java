@@ -14,10 +14,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.AdjListGraph;
+import model.AdjVertex;
 import model.User;
 import model.UserManagment;
 
@@ -38,16 +40,24 @@ public class BobSpongeController {
 	private AdjListGraph<String> listGraph;
 	@FXML
 	private Rectangle rectangleBOB;
+	@FXML
 	private Rectangle rectangleBurger;
+	@FXML
 	private Rectangle rectanglePactrick;
+	@FXML
 	private Rectangle rectangleMassage;
+	@FXML
 	private Rectangle rectangleCalam;
+	@FXML
 	private Rectangle rectangleScissor;
+	@FXML
 	private Rectangle rectangleSchool;
+	@FXML
 	private Rectangle rectangleBucket;
+	@FXML
 	private Rectangle rectangleCards;
 	
-
+	User<String> user;
 	private AdjListGraph<String> listGraphMap;
 	private AdjListGraph<String> listGraphClue;
 	private UserManagment<String> um;
@@ -144,6 +154,8 @@ public class BobSpongeController {
 			root = fxmload.load();
 			basePane.getChildren().clear();
 			basePane.setCenter(root);
+			user = new User<String>(textNickname.getText(),0);
+			user.setInitialMap((AdjVertex<String>) listGraphMap.getVertex().get(1));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -276,9 +288,155 @@ public class BobSpongeController {
 
 	}
 	
+	void putRectangles() {
+		if(user.getInitialMap().isAdjacent(user.getDestinyMap())) {
+			user.setInitialMap(user.getDestinyMap());
+			putAllInvisibleRectangle();
+			visibleRectangleCurrent();
+			visibleRectangleAdjacent();
+		}
+	}
+	
+	@FXML
+	void buttonCalam(ActionEvent event) {
+		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(1));
+		putRectangles();
+	}
+	@FXML
+	void buttonMassage(ActionEvent event) {
+		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(6));
+		putRectangles();
+	}
+	@FXML
+	void buttonPactrick(ActionEvent event) {
+		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(2));
+		putRectangles();
+	}
+	@FXML
+	void buttonBurguer(ActionEvent event) {
+		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(8));
+		putRectangles();
+	}
+	@FXML
+	void buttonSchool(ActionEvent event) {
+		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(4));
+		putRectangles();
+	}
+	@FXML
+	void buttonScissor(ActionEvent event) {
+		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(5));
+		putRectangles();
+	}
+	@FXML
+	void buttonCards(ActionEvent event) {
+		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(7));
+		putRectangles();
+	}
+	@FXML
+	void buttonBucket(ActionEvent event) {
+		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(3));
+		putRectangles();
+	}
 	@FXML
 	void buttonBOB(ActionEvent event) {
-		rectangleBOB.setVisible(true);
+		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(0));
+		putRectangles();
+	}
+	
+	void visibleRectangleCurrent() {
+		switch((String)user.getInitialMap().getValue()) {
+		case "Bob's House":
+			rectangleBOB.setStroke(Color.RED);
+			rectangleBOB.setVisible(true);
+			break;
+		case "Squidward's House":
+			rectangleCalam.setStroke(Color.RED);
+			rectangleCalam.setVisible(true);
+			break;
+		case "Patrick's House":
+			rectanglePactrick.setStroke(Color.RED);
+			rectanglePactrick.setVisible(true);
+			break;
+		case "Planton's Restaurant":
+			rectangleBucket.setStroke(Color.RED);
+			rectangleBucket.setVisible(true);
+			break;
+		case "Vehicle School":
+			rectangleSchool.setStroke(Color.RED);
+			rectangleSchool.setVisible(true);
+			break;
+		case "Scissors Shop":
+			rectangleScissor.setStroke(Color.RED);
+			rectangleScissor.setVisible(true);
+			break;
+		case "Massage Shop":
+			rectangleMassage.setStroke(Color.RED);
+			rectangleMassage.setVisible(true);
+			break;
+		case "Card Shop":
+			rectangleCards.setStroke(Color.RED);
+			rectangleCards.setVisible(true);
+			break;
+		case "Krabby Crustacio":
+			rectangleBurger.setStroke(Color.RED);
+			rectangleBurger.setVisible(true);
+			break;
+		}
+	}
+	
+	void visibleRectangleAdjacent() {
+		for(int i=0;i<user.adj().size();i++) {
+		switch((String)user.adj().get(i).getValue()) {
+		case "Bob's House":
+			rectangleBOB.setStroke(Color.BLUE);
+			rectangleBOB.setVisible(true);
+			break;
+		case "Squidward's House":
+			rectangleCalam.setStroke(Color.BLUE);
+			rectangleCalam.setVisible(true);
+			break;
+		case "Patrick's House":
+			rectanglePactrick.setStroke(Color.BLUE);
+			rectanglePactrick.setVisible(true);
+			break;
+		case "Planton's Restaurant":
+			rectangleBucket.setStroke(Color.BLUE);
+			rectangleBucket.setVisible(true);
+			break;
+		case "Vehicle School":
+			rectangleSchool.setStroke(Color.BLUE);
+			rectangleSchool.setVisible(true);
+			break;
+		case "Scissors Shop":
+			rectangleScissor.setStroke(Color.BLUE);
+			rectangleScissor.setVisible(true);
+			break;
+		case "Massage Shop":
+			rectangleMassage.setStroke(Color.BLUE);
+			rectangleMassage.setVisible(true);
+			break;
+		case "Card Shop":
+			rectangleCards.setStroke(Color.BLUE);
+			rectangleCards.setVisible(true);
+			break;
+		case "Krabby Crustacio":
+			rectangleBurger.setStroke(Color.BLUE);
+			rectangleBurger.setVisible(true);
+			break;
+		}
+		}
+	}
+	
+	void putAllInvisibleRectangle() {
+		rectangleBOB.setVisible(false);
+		rectangleBurger.setVisible(false);
+		rectanglePactrick.setVisible(false);
+		rectangleMassage.setVisible(false);
+		rectangleCalam.setVisible(false);
+		rectangleScissor.setVisible(false);
+		rectangleSchool.setVisible(false);
+		rectangleBucket.setVisible(false);
+		rectangleCards.setVisible(false);
 	}
 
 }
