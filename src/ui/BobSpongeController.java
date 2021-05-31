@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Rectangle;
@@ -30,6 +31,8 @@ public class BobSpongeController {
 	private TableColumn<User<String>, String> idNickname;
 	@FXML
 	private TableColumn<User<String>, Double> idScore;
+	@FXML
+    private TextField textNickname;
 	private Stage stage;
 
 	private AdjListGraph<String> listGraph;
@@ -109,9 +112,73 @@ public class BobSpongeController {
 			e.printStackTrace();
 		}
 	}
+	public void loadRules(){
+		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Rules.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void loadClue3(){
+		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Clue3.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void loadSignUp(){
+		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void loadGame(){
+		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Game.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	@FXML
 	void playGame(ActionEvent event) {
+		loadGame();
+	}
+	@FXML
+	void nextSignUp(ActionEvent event) {
 		loadMap();
+	}
+	@FXML
+	void nextClue3(ActionEvent event) {
+		loadSignUp();
+	}
+	@FXML
+	void nextRules(ActionEvent event) {
+		loadClue3();
+	}
+	@FXML
+	void nextGame(ActionEvent event) {
+		loadRules();
 	}
 	public void loadMap(){
 		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Map.fxml"));
@@ -126,7 +193,7 @@ public class BobSpongeController {
 		}
 	}
 	public void loadChallenge(){
-		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Challenges.fxml"));
+		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Challenge.fxml"));
 		fxmload.setController(this);
 		Parent root;
 		try {
@@ -179,6 +246,8 @@ public class BobSpongeController {
 		initClue3Vertex();
 		initClue3Edges();
 		loadChallenge();
+		System.out.println("AQUI");
+		System.out.println(listGraphClue.bfs("Bob's Sponge", "Gary"));
 	}
 	public void initClue3Vertex() {
 		listGraphClue.addVertex("Bob's Sponge");
