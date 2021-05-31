@@ -2,7 +2,7 @@ package ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -60,6 +60,23 @@ public class BobSpongeController {
 	private Rectangle rectangleBucket;
 	@FXML
 	private Rectangle rectangleCards;
+	@FXML
+	private Rectangle rectangleStar;
+	@FXML
+	private Rectangle rectangleGary;
+	@FXML
+	private Rectangle rectanglePlanton;
+	@FXML
+	private Rectangle rectanglePerlita;
+	@FXML
+	private Rectangle rectangleMuscle;
+	@FXML
+	private Rectangle rectangleCalamardo;
+	@FXML
+	private Rectangle rectangleBobC;
+	@FXML
+	private Rectangle rectangleCangrejo;
+	
 	User<String> user;
 	private AdjListGraph<String> listGraphMap;
 	private AdjListGraph<String> listGraphClue;
@@ -270,6 +287,7 @@ public class BobSpongeController {
 		initClue3Vertex();
 		initClue3Edges();
 		loadChallenge();
+		user.setInitialClue((AdjVertex<String>) listGraphClue.getVertex().get(0));
 		System.out.println("AQUI");
 		System.out.println(listGraphClue.bfs("Bob's Sponge", "Gary"));
 	}
@@ -288,9 +306,8 @@ public class BobSpongeController {
 		listGraphClue.addEdge("Patricio", "Gary");
 		listGraphClue.addEdge("Gary", "Calamardo");
 		listGraphClue.addEdge("Calamardo", "Larry");
-		listGraphClue.addEdge("Calamardo", "Eugene");
+		listGraphClue.addEdge("Calamardo", "Planton");
 		listGraphClue.addEdge("Eugene","Perlita");
-		listGraphClue.addEdge("Eugene", "Larry");
 		listGraphClue.addEdge("Larry", "Perlita");
 		listGraphClue.addEdge("Perlita", "Planton");
 		listGraphClue.addEdge("Planton", "Larry");
@@ -300,63 +317,113 @@ public class BobSpongeController {
 		loadPlayGame();
 	}
 	
-	void putRectangles() {
+	void putRectanglesMap() {
 		if(user.getInitialMap().isAdjacent(user.getDestinyMap())) {
 			user.setInitialMap(user.getDestinyMap());
-			putAllInvisibleRectangle();
-			visibleRectangleCurrent();
-			visibleRectangleAdjacent();
+			putAllInvisibleMap();
+			visibleRectangleCurrent(user.getInitialMap());
+			visibleRectangleAdjacent(user.adjMap());
+		}
+	}
+	
+	void putRectanglesChallenge() {
+		if(user.getInitialClue().isAdjacent(user.getDestinyClue())) {
+			user.setInitialClue(user.getDestinyClue());
+			putAllInvisibleClue3();
+			visibleRectangleCurrent(user.getInitialClue());
+			visibleRectangleAdjacent(user.adjChallenge());
 		}
 	}
 	
 	@FXML
 	void buttonCalam(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(1));
-		putRectangles();
+		putRectanglesMap();
 	}
 	@FXML
 	void buttonMassage(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(6));
-		putRectangles();
+		putRectanglesMap();
 	}
 	@FXML
 	void buttonPactrick(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(2));
-		putRectangles();
+		putRectanglesMap();
 	}
 	@FXML
 	void buttonBurguer(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(8));
-		putRectangles();
+		putRectanglesMap();
 	}
 	@FXML
 	void buttonSchool(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(4));
-		putRectangles();
+		putRectanglesMap();
 	}
 	@FXML
 	void buttonScissor(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(5));
-		putRectangles();
+		putRectanglesMap();
 	}
 	@FXML
 	void buttonCards(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(7));
-		putRectangles();
+		putRectanglesMap();
 	}
 	@FXML
 	void buttonBucket(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(3));
-		putRectangles();
+		putRectanglesMap();
 	}
 	@FXML
 	void buttonBOB(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(0));
-		putRectangles();
+		putRectanglesMap();
 	}
 	
-	void visibleRectangleCurrent() {
-		switch((String)user.getInitialMap().getValue()) {
+	@FXML
+	void buttonStarC(ActionEvent event) {
+		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(2));
+		putRectanglesChallenge();
+	}
+	@FXML
+	void buttonBobC(ActionEvent event) {
+		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(0));
+		putRectanglesChallenge();
+	}
+	@FXML
+	void buttonCalamC(ActionEvent event) {
+		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(1));
+		putRectanglesChallenge();
+	}
+	@FXML
+	void buttonMuscleC(ActionEvent event) {
+		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(5));
+		putRectanglesChallenge();
+	}
+	@FXML
+	void buttonCangrejoC(ActionEvent event) {
+		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(7));
+		putRectanglesChallenge();
+	}
+	@FXML
+	void buttonPerlitaC(ActionEvent event) {
+		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(6));
+		putRectanglesChallenge();
+	}
+	@FXML
+	void buttonPlantonC(ActionEvent event) {
+		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(3));
+		putRectanglesChallenge();
+	}
+	@FXML
+	void buttonGaryC(ActionEvent event) {
+		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(4));
+		putRectanglesChallenge();
+	}
+	
+	void visibleRectangleCurrent(AdjVertex<String> initial) {
+		switch((String)initial.getValue()) {
 		case "Bob's House":
 			rectangleBOB.setStroke(Color.RED);
 			rectangleBOB.setVisible(true);
@@ -393,12 +460,44 @@ public class BobSpongeController {
 			rectangleBurger.setStroke(Color.RED);
 			rectangleBurger.setVisible(true);
 			break;
+		case "Bob's Sponge":
+			rectangleBobC.setStroke(Color.RED);
+			rectangleBobC.setVisible(true);
+			break;
+		case "Calamardo":
+			rectangleCalamardo.setStroke(Color.RED);
+			rectangleCalamardo.setVisible(true);
+			break;
+		case "Patricio":
+			rectangleStar.setStroke(Color.RED);
+			rectangleStar.setVisible(true);
+			break;
+		case "Planton":
+			rectanglePlanton.setStroke(Color.RED);
+			rectanglePlanton.setVisible(true);
+			break;
+		case "Gary":
+			rectangleGary.setStroke(Color.RED);
+			rectangleGary.setVisible(true);
+			break;
+		case "Larry":
+			rectangleMuscle.setStroke(Color.RED);
+			rectangleMuscle.setVisible(true);
+			break;
+		case "Perlita":
+			rectanglePerlita.setStroke(Color.RED);
+			rectanglePerlita.setVisible(true);
+			break;
+		case "Eugene":
+			rectangleCangrejo.setStroke(Color.RED);
+			rectangleCangrejo.setVisible(true);
+			break;
 		}
 	}
 	
-	void visibleRectangleAdjacent() {
-		for(int i=0;i<user.adj().size();i++) {
-		switch((String)user.adj().get(i).getValue()) {
+	void visibleRectangleAdjacent(ArrayList<AdjVertex<String>>adj) {
+		for(int i=0;i<adj.size();i++) {
+		switch((String)adj.get(i).getValue()) {
 		case "Bob's House":
 			rectangleBOB.setStroke(Color.BLUE);
 			rectangleBOB.setVisible(true);
@@ -435,11 +534,44 @@ public class BobSpongeController {
 			rectangleBurger.setStroke(Color.BLUE);
 			rectangleBurger.setVisible(true);
 			break;
+		case "Bob's Sponge":
+			rectangleBobC.setStroke(Color.BLUE);
+			rectangleBobC.setVisible(true);
+			break;
+		case "Calamardo":
+			rectangleCalamardo.setStroke(Color.BLUE);
+			rectangleCalamardo.setVisible(true);
+			break;
+		case "Patricio":
+			rectangleStar.setStroke(Color.BLUE);
+			rectangleStar.setVisible(true);
+			break;
+		case "Planton":
+			rectanglePlanton.setStroke(Color.BLUE);
+			rectanglePlanton.setVisible(true);
+			break;
+		case "Gary":
+			rectangleGary.setStroke(Color.BLUE);
+			rectangleGary.setVisible(true);
+			break;
+		case "Larry":
+			rectangleMuscle.setStroke(Color.BLUE);
+			rectangleMuscle.setVisible(true);
+			break;
+		case "Perlita":
+			rectanglePerlita.setStroke(Color.BLUE);
+			rectanglePerlita.setVisible(true);
+			break;
+		case "Eugene":
+			rectangleCangrejo.setStroke(Color.BLUE);
+			rectangleCangrejo.setVisible(true);
+			break;
 		}
 		}
 	}
 	
-	void putAllInvisibleRectangle() {
+	void putAllInvisibleMap() {
+		
 		rectangleBOB.setVisible(false);
 		rectangleBurger.setVisible(false);
 		rectanglePactrick.setVisible(false);
@@ -449,6 +581,17 @@ public class BobSpongeController {
 		rectangleSchool.setVisible(false);
 		rectangleBucket.setVisible(false);
 		rectangleCards.setVisible(false);
+	}
+	
+	void putAllInvisibleClue3() {
+		rectangleCangrejo.setVisible(false);
+		rectanglePerlita.setVisible(false);
+		rectangleMuscle.setVisible(false);
+		rectangleGary.setVisible(false);
+		rectanglePlanton.setVisible(false);
+		rectangleStar.setVisible(false);
+		rectangleCalamardo.setVisible(false);
+		rectangleBobC.setVisible(false);
 	}
 
 }

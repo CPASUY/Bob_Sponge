@@ -86,10 +86,18 @@ public class User <T> implements Serializable{
 		this.score = score;
 	}
 	
-	public ArrayList<AdjVertex<T>> adj() {
+	public ArrayList<AdjVertex<T>> adjMap() {
 		ArrayList<AdjVertex<T>> d = new ArrayList<AdjVertex<T>>();
 		for (int i=0; i<initialMap.getAdjList().size(); i++) {
 				d.add(initialMap.getAdjList().get(i).getDestination());
+		}
+		return d;
+	}
+	
+	public ArrayList<AdjVertex<T>> adjChallenge() {
+		ArrayList<AdjVertex<T>> d = new ArrayList<AdjVertex<T>>();
+		for (int i=0; i<initialClue.getAdjList().size(); i++) {
+				d.add(initialClue.getAdjList().get(i).getDestination());
 		}
 		return d;
 	}
