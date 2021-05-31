@@ -18,8 +18,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.AdjListGraph;
+import model.AdjVertex;
 import model.User;
 import model.UserManagment;
+import model.Vertex;
 
 
 public class BobSpongeController {
@@ -233,7 +235,9 @@ public class BobSpongeController {
 	 }
 	 @FXML
 	 void clue1(ActionEvent event) {
-
+		 Vertex<String> v1=listGraphMap.getVertex().get(0);
+		 Vertex<String> v2=listGraphMap.getVertex().get(8);
+		 System.out.println(listGraphMap.dijkstra(v1,v2));
 	}
 
 	@FXML
@@ -264,12 +268,11 @@ public class BobSpongeController {
 		listGraphClue.addEdge("Patricio", "Gary");
 		listGraphClue.addEdge("Gary", "Calamardo");
 		listGraphClue.addEdge("Calamardo", "Larry");
-		listGraphClue.addEdge("Calamardo", "Eugene");
-		listGraphClue.addEdge("Eugene","Perlita");
-		listGraphClue.addEdge("Eugene", "Larry");
-		listGraphClue.addEdge("Larry", "Perlita");
-		listGraphClue.addEdge("Perlita", "Planton");
+		listGraphClue.addEdge("Calamardo", "Planton");
+		listGraphClue.addEdge("Planton","Perlita");
 		listGraphClue.addEdge("Planton", "Larry");
+		listGraphClue.addEdge("Larry", "Perlita");
+		listGraphClue.addEdge("Perlita", "Eugene");
 	}
 	@FXML
 	void exitGame(ActionEvent event) {

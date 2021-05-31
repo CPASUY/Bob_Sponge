@@ -147,6 +147,12 @@ public class AdjListGraph<T> implements IGraph<T> {
 		
 	}
 
+	public ArrayList<Vertex<T>> getVertex() {
+		return vertex;
+	}
+	public void setVertex(ArrayList<Vertex<T>> vertex) {
+		this.vertex = vertex;
+	}
 	@Override
 	public void dfs(T initialNode) {
 		AdjVertex<T> vertex=searchAdjVertex(initialNode);
