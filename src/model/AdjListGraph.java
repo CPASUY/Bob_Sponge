@@ -147,6 +147,12 @@ public class AdjListGraph<T> implements IGraph<T> {
 		
 	}
 
+	public ArrayList<Vertex<T>> getVertex() {
+		return vertex;
+	}
+	public void setVertex(ArrayList<Vertex<T>> vertex) {
+		this.vertex = vertex;
+	}
 	@Override
 	public void dfs(T initialNode) {
 		AdjVertex<T> vertex=searchAdjVertex(initialNode);
@@ -287,10 +293,11 @@ public class AdjListGraph<T> implements IGraph<T> {
 			System.out.println("El costo total minimo de es: " + totalWeight);
 	}
 	
-	public void prim(Vertex<T> from) {
+	public double prim(Vertex<T> from) {
 		AdjVertex<T> r = (AdjVertex<T>) from;
+		double totalWeight=-1;
 		for(Vertex<T> u : vertex) {
-			distance[u.getIndex()]=99999;
+			distance[u.getIndex()]=INFINITE;
 		}
 		distance[r.getIndex()]=0;
 		PriorityQueue<AdjVertex<T>> queue = new PriorityQueue<>();
@@ -304,10 +311,12 @@ public class AdjListGraph<T> implements IGraph<T> {
 				if(e.getWeight() < distance[v.getIndex()]) {
 					queue.remove(v);
 					distance[v.getIndex()]=e.getWeight();
+					totalWeight += e.getWeight();
 					queue.add(v);
 				}
 			}
 		}
+		return totalWeight;
 	}
 	
 	private int find(int x,int[]fathers) {
@@ -337,8 +346,5 @@ public class AdjListGraph<T> implements IGraph<T> {
 		return adjList.get(element);
 	}
 	
-	public ArrayList<Vertex<T>> getVertex(){
-		return vertex;
-	}
 
 }
