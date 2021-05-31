@@ -217,11 +217,12 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 		
 	}
 	
-	public void prim(Vertex<T> from, int v) {
+	public double prim(Vertex<T> from, int v) {
 		int visited[] = new int[numVertex];
 		visited[v] = 1;
 		int h1 = -1;
 		int h2 = -1;
+		double totalWeight=-1;
 		double minWeight = 10000;
 		for(int i=0;i<numVertex;i++) {// Debido a que hay vértices numVertex, después de que finaliza el algoritmo de Prim, hay bordes numVertex-1 esto es para determinar cada subgrafo generado, qué nodo es el más cercano
 			for(int j=0;j<numVertex;j++) { //j nodo representa el nodo que se ha visitado
@@ -233,11 +234,12 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 					}
 				}
 			}
-			System.out.println("Lado <" + distance[h1] + "," + distance[h2] + "> Peso:" + minWeight); // Marcar el nodo actual como visitado
+			totalWeight += minWeight;
             visited[h2] = 1;
             // minWeight se restablece al valor máximo de 10000
             minWeight = 10000;
 		}
+		return totalWeight;
 	}
 	
 	@Override
