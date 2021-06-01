@@ -20,12 +20,12 @@
       <Button layoutX="473.0" layoutY="428.0" mnemonicParsing="false" onAction="#buttonEgg" text="Go" />
       <Button layoutX="382.0" layoutY="565.0" mnemonicParsing="false" onAction="#buttonLettuce" text="Go" />
       <Button layoutX="113.0" layoutY="400.0" mnemonicParsing="false" onAction="#buttonPickle" text="Go" />
-      <Rectangle fx:id="rectanglePickle" fill="WHITE" height="94.0" layoutX="72.0" layoutY="305.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" width="81.0" />
-      <Rectangle fx:id="rectangleMeat" fill="WHITE" height="94.0" layoutX="131.0" layoutY="198.0" opacity="0.22" stroke="#0012ff" strokeType="INSIDE" strokeWidth="8.0" width="111.0" />
+      <Rectangle fx:id="rectanglePickle" fill="WHITE" height="94.0" layoutX="72.0" layoutY="305.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="81.0" />
+      <Rectangle fx:id="rectangleMeat" fill="WHITE" height="94.0" layoutX="131.0" layoutY="198.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="111.0" />
       <Rectangle fx:id="rectangleBacon" fill="WHITE" height="84.0" layoutX="246.0" layoutY="331.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="118.0" />
       <Rectangle fx:id="rectangleTomato" fill="WHITE" height="94.0" layoutX="374.0" layoutY="185.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="90.0" />
       <Rectangle fx:id="rectangleEgg" fill="WHITE" height="119.0" layoutX="454.0" layoutY="304.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="102.0" />
       <Rectangle fx:id="rectangleLettuce" fill="WHITE" height="107.0" layoutX="369.0" layoutY="446.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="102.0" />
-      <Rectangle fx:id="rectangleOnion" fill="WHITE" height="107.0" layoutX="118.0" layoutY="440.0" opacity="0.22" stroke="#0012ff" strokeType="INSIDE" strokeWidth="8.0" width="102.0" />
+      <Rectangle fx:id="rectangleOnion" fill="WHITE" height="107.0" layoutX="118.0" layoutY="440.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="102.0" />
    </children>
 </Pane>
