@@ -26,6 +26,7 @@ import model.AdjListGraph;
 import model.AdjVertex;
 import model.User;
 import model.UserManagment;
+import model.Vertex;
 
 
 public class BobSpongeController {
@@ -274,7 +275,7 @@ public class BobSpongeController {
 	 }
 	 @FXML
 	 void clue1(ActionEvent event) {
-		 System.out.println(listGraphMap.dijkstra(listGraphMap.getVertexDijkstra().get(0),listGraphMap.getVertexDijkstra().get(8)));
+
 	}
 
 	@FXML
@@ -289,7 +290,7 @@ public class BobSpongeController {
 		loadChallenge();
 		user.setInitialClue((AdjVertex<String>) listGraphClue.getVertex().get(0));
 		System.out.println("AQUI");
-		System.out.println(listGraphClue.bfs("Bob's Sponge", "Gary"));
+		System.out.println(listGraphClue.bfs("Bob's Sponge","Eugene"));
 	}
 	public void initClue3Vertex() {
 		listGraphClue.addVertex("Bob's Sponge");
@@ -307,10 +308,11 @@ public class BobSpongeController {
 		listGraphClue.addEdge("Gary", "Calamardo");
 		listGraphClue.addEdge("Calamardo", "Larry");
 		listGraphClue.addEdge("Calamardo", "Planton");
+		listGraphClue.addEdge("Planton","Perlita");
+		listGraphClue.addEdge("Planton","Larry");
 		listGraphClue.addEdge("Eugene","Perlita");
 		listGraphClue.addEdge("Larry", "Perlita");
-		listGraphClue.addEdge("Perlita", "Planton");
-		listGraphClue.addEdge("Planton", "Larry");
+		listGraphClue.addEdge("Perlita", "Eugene");
 	}
 	@FXML
 	void exitGame(ActionEvent event) {
