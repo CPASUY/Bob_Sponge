@@ -129,13 +129,13 @@ public class BobSpongeController {
 		listGraphMap.addEdge("Card Shop", "Planton's Restaurant", 20);
 		listGraphMap.addEdge("Vehicle School", "Card Shop", 50);
 		listGraphMap.addEdge("Scissors Shop", "Card Shop", 15);
-		listGraphMap.addEdge("Scissors Shop","Vehicle School", 30);
-		listGraphMap.addEdge("Scissors Shop", "Krabby Crustacio", 60);
+		listGraphMap.addEdge("Vehicle School","Scissors Shop", 30);
+		listGraphMap.addEdge("Scissors Shop", "Krabby Crustacio", 50);
 		listGraphMap.addEdge("Scissors Shop", "Planton's Restaurant", 40);
 		listGraphMap.addEdge("Massage Shop", "Scissors Shop", 35);
-		listGraphMap.addEdge("Massage Shop", "Krabby Crustacio", 25);
+		listGraphMap.addEdge("Massage Shop", "Krabby Crustacio", 45);
 		listGraphMap.addEdge("Massage Shop", "Planton's Restaurant", 30);
-		listGraphMap.addEdge("Massage Shop","Patrick's House",70);
+		listGraphMap.addEdge("Massage Shop","Patrick's House",80);
 	}
 	public void loadPlayGame(){
 		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("PlayGame.fxml"));
@@ -281,6 +281,7 @@ public class BobSpongeController {
 	 }
 	 @FXML
 	 void clue1(ActionEvent event) {
+
 	}
 
 	@FXML

@@ -1,7 +1,7 @@
 package model;
 import java.util.ArrayList;
 
-public class AdjVertex<T>  extends Vertex<T> {
+public class AdjVertex<T>  extends Vertex<T> implements Comparable<AdjVertex<T>> {
 	
 	private ArrayList<Edge<T>> edgesList;
 
@@ -26,5 +26,15 @@ public class AdjVertex<T>  extends Vertex<T> {
 				return true;
 		}
 		return false;
+	}
+
+	@Override
+	public int compareTo(AdjVertex<T> o) {
+		if(getIndex()==o.getIndex())  
+			return 0;  
+			else if(getIndex()>o.getIndex())  
+			return 1;  
+			else
+			return -1; 
 	}
 }
