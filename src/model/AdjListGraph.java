@@ -269,7 +269,7 @@ public class AdjListGraph<T> implements IGraph<T> {
         }
     } 
 
-	public void kruskal() {
+	public int kruskal() {
 		for(int i=0;i<fathers.length;i++) {
 			fathers[i] = i;
 		}
@@ -285,15 +285,13 @@ public class AdjListGraph<T> implements IGraph<T> {
 			if(find(origin) != find(destination)) {
 				unite(origin,destination);
 				totalWeight +=weight;
-				System.out.println(" " + origin + " ----->  " + destination + ": " + weight);
 				edgesGraph++;
 			}
 			count++;}
-		
 			if(edgesGraph != numVertex-1) {
 				System.out.println("El grafo no es valido");
 		}
-			System.out.println("El costo total minimo de es: " + totalWeight);
+			return totalWeight;
 	}
 	
 	public double prim(Vertex<T> from) {

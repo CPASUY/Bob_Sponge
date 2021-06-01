@@ -1,6 +1,6 @@
 package ui;
 
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,7 +26,6 @@ import model.AdjListGraph;
 import model.AdjVertex;
 import model.User;
 import model.UserManagment;
-import model.Vertex;
 
 
 public class BobSpongeController {
@@ -275,7 +274,7 @@ public class BobSpongeController {
 	 }
 	 @FXML
 	 void clue1(ActionEvent event) {
-
+		 listGraphMap.kruskal();
 	}
 
 	@FXML
