@@ -107,7 +107,7 @@ public class BobSpongeController {
 		s.setResizable(false);
 		listGraphMap=new AdjListGraph<String>(false,true,9);
 		listGraphClue=new AdjListGraph<String>(false,false,8);
-		listGraphClue2=new AdjListGraph<String>(false,false,7);
+		listGraphClue2=new AdjListGraph<String>(false,true,7);
 		um=new UserManagment<String>();
 		challengeElection=new ArrayList<Vertex<String>>();
 		mapElection=new ArrayList<Vertex<String>>();
@@ -375,18 +375,18 @@ public class BobSpongeController {
 		listGraphClue2.addVertex("Bacon");
 	}
 	public void initClue2Edges() {
-		listGraphClue2.addEdge("Pickle", "Onion");//50
-		listGraphClue2.addEdge("Pickle", "Meat");//10
-		listGraphClue2.addEdge("Onion", "Meat");//40
-		listGraphClue2.addEdge("Onion", "Bacon");//60
-		listGraphClue2.addEdge("Onion", "Lettuce");//20
-		listGraphClue2.addEdge("Meat","Tomato");//70
-		listGraphClue2.addEdge("Meat","Bacon");//80
-		listGraphClue2.addEdge("Bacon","Tomato");//110
-		listGraphClue2.addEdge("Bacon", "Lettuce");//90
-		listGraphClue2.addEdge("Lettuce", "Tomato");//30
-		listGraphClue2.addEdge("Lettuce", "Egg");//120
-		listGraphClue2.addEdge("Tomato", "Egg");//10
+		listGraphClue2.addEdge("Pickle", "Onion",50);
+		listGraphClue2.addEdge("Pickle", "Meat",10);
+		listGraphClue2.addEdge("Onion", "Meat",40);
+		listGraphClue2.addEdge("Onion", "Bacon",60);
+		listGraphClue2.addEdge("Onion", "Lettuce",20);
+		listGraphClue2.addEdge("Meat","Tomato",70);
+		listGraphClue2.addEdge("Meat","Bacon",80);
+		listGraphClue2.addEdge("Bacon","Tomato",110);
+		listGraphClue2.addEdge("Bacon", "Lettuce",90);
+		listGraphClue2.addEdge("Lettuce", "Tomato",30);
+		listGraphClue2.addEdge("Lettuce", "Egg",120);
+		listGraphClue2.addEdge("Tomato", "Egg",10);
 	}
 	@FXML
 	void exitGame(ActionEvent event) {

@@ -109,7 +109,6 @@ public class User <T> implements Serializable{
 		ArrayList<AdjVertex<T>> d = new ArrayList<AdjVertex<T>>();
 		for (int i=0; i<initialClue2.getAdjList().size(); i++) {
 				d.add(initialClue2.getAdjList().get(i).getDestination());
-				System.out.println(initialClue2.getAdjList().get(i).getDestination().getValue());
 		}
 		return d;
 	}
