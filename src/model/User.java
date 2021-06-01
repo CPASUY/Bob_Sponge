@@ -16,6 +16,8 @@ public class User <T> implements Serializable{
 	private AdjVertex<T> destinyMap;
 	private AdjVertex<T> initialClue;
 	private AdjVertex<T> destinyClue;
+	private AdjVertex<T> initialClue1;
+	private AdjVertex<T> destinyClue1;
 	private User <T>  father;
 	
 	public User(String n,double s) {
@@ -100,5 +102,26 @@ public class User <T> implements Serializable{
 				d.add(initialClue.getAdjList().get(i).getDestination());
 		}
 		return d;
+	}
+	
+	public ArrayList<AdjVertex<T>> adjChallenge1() {
+		ArrayList<AdjVertex<T>> d = new ArrayList<AdjVertex<T>>();
+		for (int i=0; i<initialClue1.getAdjList().size(); i++) {
+				d.add(initialClue1.getAdjList().get(i).getDestination());
+		}
+		return d;
+	}
+	
+	public AdjVertex<T> getInitialClue1() {
+		return initialClue1;
+	}
+	public void setInitialClue1(AdjVertex<T> initialClue1) {
+		this.initialClue1 = initialClue1;
+	}
+	public AdjVertex<T> getDestinyClue1() {
+		return destinyClue1;
+	}
+	public void setDestinyClue1(AdjVertex<T> destinyClue1) {
+		this.destinyClue1 = destinyClue1;
 	}
 }

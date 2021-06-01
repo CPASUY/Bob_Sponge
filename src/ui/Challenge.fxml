@@ -19,9 +19,9 @@
             <Image url="@../../images/Places/Challenge.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="rectangleStar" fill="WHITE" height="158.0" layoutX="390.0" layoutY="161.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="112.0" />
+      <Rectangle fx:id="rectangleStar" fill="WHITE" height="158.0" layoutX="390.0" layoutY="161.0" opacity="0.22" stroke="#0012ff" strokeType="INSIDE" strokeWidth="8.0" width="112.0" />
       <Rectangle fx:id="rectangleGary" fill="WHITE" height="102.0" layoutX="536.0" layoutY="68.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="98.0" />
-      <Rectangle fx:id="rectangleBobC" fill="WHITE" height="139.0" layoutX="404.0" layoutY="416.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="98.0" />
+      <Rectangle fx:id="rectangleBobC" fill="WHITE" height="139.0" layoutX="404.0" layoutY="416.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" width="98.0" />
       <Rectangle fx:id="rectanglePlanton" fill="WHITE" height="173.0" layoutX="650.0" layoutY="67.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="92.0" />
       <Rectangle fx:id="rectanglePerlita" fill="WHITE" height="158.0" layoutX="800.0" layoutY="153.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="106.0" />
       <Rectangle fx:id="rectangleMuscle" fill="WHITE" height="128.0" layoutX="657.0" layoutY="330.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="126.0" />
@@ -35,5 +35,6 @@
       <Button layoutX="827.0" layoutY="316.0" mnemonicParsing="false" onAction="#buttonPerlitaC" text="Go" />
       <Button layoutX="688.0" layoutY="240.0" mnemonicParsing="false" onAction="#buttonPlantonC" text="Go" />
       <Button layoutX="569.0" layoutY="170.0" mnemonicParsing="false" onAction="#buttonGaryC" text="Go" />
+      <Button layoutX="625.0" layoutY="628.0" mnemonicParsing="false" onAction="#calificateElection" />
    </children>
 </Pane>

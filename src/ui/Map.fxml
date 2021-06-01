@@ -62,15 +62,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Rectangle fx:id="rectangleBOB" fill="WHITE" height="123.0" layoutX="213.0" layoutY="402.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="114.0" />
-      <Rectangle fx:id="rectangleCalam" fill="WHITE" height="116.0" layoutX="384.0" layoutY="412.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="114.0" />
+      <Rectangle fx:id="rectangleBOB" fill="WHITE" height="123.0" layoutX="213.0" layoutY="402.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" width="114.0" />
+      <Rectangle fx:id="rectangleCalam" fill="WHITE" height="116.0" layoutX="384.0" layoutY="412.0" opacity="0.22" stroke="#0012ff" strokeType="INSIDE" strokeWidth="8.0" width="114.0" />
       <Rectangle fx:id="rectangleMassage" fill="WHITE" height="129.0" layoutX="529.0" layoutY="395.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="160.0" />
-      <Rectangle fx:id="rectanglePactrick" fill="WHITE" height="85.0" layoutX="656.0" layoutY="311.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="129.0" />
-      <Rectangle fx:id="rectangleCards" fill="WHITE" height="103.0" layoutX="251.0" layoutY="134.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="150.0" />
+      <Rectangle fx:id="rectanglePactrick" fill="WHITE" height="85.0" layoutX="656.0" layoutY="311.0" opacity="0.22" stroke="#0012ff" strokeType="INSIDE" strokeWidth="8.0" width="129.0" />
+      <Rectangle fx:id="rectangleCards" fill="WHITE" height="103.0" layoutX="251.0" layoutY="134.0" opacity="0.22" stroke="#0012ff" strokeType="INSIDE" strokeWidth="8.0" width="150.0" />
       <Rectangle fx:id="rectangleBucket" fill="WHITE" height="136.0" layoutX="466.0" layoutY="119.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="114.0" />
       <Rectangle fx:id="rectangleBurger" fill="WHITE" height="85.0" layoutX="670.0" layoutY="195.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="114.0" />
       <Rectangle fx:id="rectangleSchool" fill="WHITE" height="91.0" layoutX="420.0" layoutY="280.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="150.0" />
-      <Rectangle fx:id="rectangleScissor" fill="WHITE" height="91.0" layoutX="152.0" layoutY="267.0" opacity="0.22" stroke="RED" strokeType="INSIDE" strokeWidth="8.0" visible="false" width="180.0" />
+      <Rectangle fx:id="rectangleScissor" fill="WHITE" height="91.0" layoutX="152.0" layoutY="267.0" opacity="0.22" stroke="#0012ff" strokeType="INSIDE" strokeWidth="8.0" width="180.0" />
       <Button layoutX="249.0" layoutY="528.0" mnemonicParsing="false" onAction="#buttonBOB" prefHeight="25.0" prefWidth="40.0" text="Go">
          <cursor>
             <Cursor fx:constant="HAND" />

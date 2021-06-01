@@ -288,9 +288,7 @@ public class AdjListGraph<T> implements IGraph<T> {
 				edgesGraph++;
 			}
 			count++;}
-			if(edgesGraph != numVertex-1) {
-				System.out.println("El grafo no es valido");
-		}
+		
 			return totalWeight;
 	}
 	
