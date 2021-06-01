@@ -41,12 +41,7 @@ public class BobSpongeController {
 	@FXML
     private TextField textNickname;
 	private Stage stage;
-<<<<<<< HEAD
-=======
-
 	private AdjListGraph<String> listGraph;
-	
->>>>>>> 3bc1f60a8cabfd233bc3c67b38ef18207b826629
 	@FXML
 	private Rectangle rectangleBOB;
 	@FXML
