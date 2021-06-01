@@ -15,7 +15,7 @@ public class AdjVertex<T>  extends Vertex<T> {
 	}
 	public Edge<T> findEdgeOfVertex(AdjVertex<T> vertex){
 		for (int i=0; i<edgesList.size(); i++) {
-			if (edgesList.get(i).getDestination()==vertex)
+			if (edgesList.get(i).getInitial()==vertex)
 				return edgesList.get(i);
 		}
 		return null;

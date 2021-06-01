@@ -81,14 +81,20 @@ public class BobSpongeController {
 	User<String> user;
 	private AdjListGraph<String> listGraphMap;
 	private AdjListGraph<String> listGraphClue;
+	private AdjListGraph<String> listGraphClue2;
 	private UserManagment<String> um;
+	private ArrayList<Vertex<String>> challengeElection;
+	private ArrayList<Vertex<String>> mapElection;
 
 
 	public BobSpongeController(Stage s) throws IOException {
 		stage=s;
 		listGraphMap=new AdjListGraph<String>(false,true,9);
 		listGraphClue=new AdjListGraph<String>(false,false,8);
+		listGraphClue2=new AdjListGraph<String>(false,false,7);
 		um=new UserManagment<String>();
+		challengeElection=new ArrayList<Vertex<String>>();
+		mapElection=new ArrayList<Vertex<String>>();
 	}
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -279,7 +285,8 @@ public class BobSpongeController {
 
 	@FXML
 	void clue2(ActionEvent event) {
-
+		initClue2Vertex();
+		initClue2Edges();
 	}
 
 	@FXML
@@ -288,8 +295,6 @@ public class BobSpongeController {
 		initClue3Edges();
 		loadChallenge();
 		user.setInitialClue((AdjVertex<String>) listGraphClue.getVertex().get(0));
-		System.out.println("AQUI");
-		System.out.println(listGraphClue.bfs("Bob's Sponge","Eugene"));
 	}
 	public void initClue3Vertex() {
 		listGraphClue.addVertex("Bob's Sponge");
@@ -307,14 +312,34 @@ public class BobSpongeController {
 		listGraphClue.addEdge("Gary", "Calamardo");
 		listGraphClue.addEdge("Calamardo", "Larry");
 		listGraphClue.addEdge("Calamardo", "Planton");
-<<<<<<< HEAD
 		listGraphClue.addEdge("Planton","Perlita");
 		listGraphClue.addEdge("Planton","Larry");
-=======
 		listGraphClue.addEdge("Eugene","Perlita");
->>>>>>> b964298a7abd1e7eb700aead1a96594c36117883
 		listGraphClue.addEdge("Larry", "Perlita");
 		listGraphClue.addEdge("Perlita", "Eugene");
+	}
+	public void initClue2Vertex() {
+		listGraphClue2.addVertex("Pickle");
+		listGraphClue2.addVertex("Onion");
+		listGraphClue2.addVertex("Meat");
+		listGraphClue2.addVertex("Egg");
+		listGraphClue2.addVertex("Tomato");
+		listGraphClue2.addVertex("Lettuce");
+		listGraphClue2.addVertex("Bacon");
+	}
+	public void initClue2Edges() {
+		listGraphClue2.addEdge("Pickle", "Onion");
+		listGraphClue2.addEdge("Pickle", "Meat");
+		listGraphClue2.addEdge("Onion", "Meat");
+		listGraphClue2.addEdge("Onion", "Bacon");
+		listGraphClue2.addEdge("Onion", "Lettuce");
+		listGraphClue2.addEdge("Meat","Tomato");
+		listGraphClue2.addEdge("Meat","Lettuce");
+		listGraphClue2.addEdge("Bacon","Tomato");
+		listGraphClue2.addEdge("Bacon", "Lettuce");
+		listGraphClue2.addEdge("Lettuce", "Tomato");
+		listGraphClue2.addEdge("Lettuce", "Egg");
+		listGraphClue2.addEdge("Tomato", "Egg");
 	}
 	@FXML
 	void exitGame(ActionEvent event) {
@@ -342,41 +367,49 @@ public class BobSpongeController {
 	@FXML
 	void buttonCalam(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(1));
+		mapElection.add(listGraphClue.getVertex().get(1));
 		putRectanglesMap();
 	}
 	@FXML
 	void buttonMassage(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(6));
+		mapElection.add(listGraphClue.getVertex().get(6));
 		putRectanglesMap();
 	}
 	@FXML
 	void buttonPactrick(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(2));
+		mapElection.add(listGraphClue.getVertex().get(2));
 		putRectanglesMap();
 	}
 	@FXML
 	void buttonBurguer(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(8));
+		mapElection.add(listGraphClue.getVertex().get(8));
 		putRectanglesMap();
 	}
 	@FXML
 	void buttonSchool(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(4));
+		mapElection.add(listGraphClue.getVertex().get(4));
 		putRectanglesMap();
 	}
 	@FXML
 	void buttonScissor(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(5));
+		mapElection.add(listGraphClue.getVertex().get(5));
 		putRectanglesMap();
 	}
 	@FXML
 	void buttonCards(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(7));
+		mapElection.add(listGraphClue.getVertex().get(7));
 		putRectanglesMap();
 	}
 	@FXML
 	void buttonBucket(ActionEvent event) {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(3));
+		mapElection.add(listGraphClue.getVertex().get(3));
 		putRectanglesMap();
 	}
 	@FXML
@@ -384,11 +417,14 @@ public class BobSpongeController {
 		user.setDestinyMap((AdjVertex<String>) listGraphMap.getVertex().get(0));
 		putRectanglesMap();
 	}
-	
+	//
 	@FXML
 	void buttonStarC(ActionEvent event) {
 		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(2));
+		challengeElection.add(listGraphClue.getVertex().get(2));
+		System.out.println(challengeElection.size());
 		putRectanglesChallenge();
+		
 	}
 	@FXML
 	void buttonBobC(ActionEvent event) {
@@ -398,34 +434,73 @@ public class BobSpongeController {
 	@FXML
 	void buttonCalamC(ActionEvent event) {
 		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(1));
+		challengeElection.add(listGraphClue.getVertex().get(1));
+		System.out.println(challengeElection.size());
 		putRectanglesChallenge();
 	}
 	@FXML
 	void buttonMuscleC(ActionEvent event) {
 		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(5));
+		challengeElection.add(listGraphClue.getVertex().get(5));
+		System.out.println(challengeElection.size());
 		putRectanglesChallenge();
 	}
 	@FXML
 	void buttonCangrejoC(ActionEvent event) {
 		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(7));
+		challengeElection.add(listGraphClue.getVertex().get(7));
+		System.out.println(challengeElection.size());
 		putRectanglesChallenge();
 	}
 	@FXML
 	void buttonPerlitaC(ActionEvent event) {
 		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(6));
+		challengeElection.add(listGraphClue.getVertex().get(6));
+		System.out.println(challengeElection.size());
 		putRectanglesChallenge();
 	}
 	@FXML
 	void buttonPlantonC(ActionEvent event) {
 		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(3));
+		challengeElection.add(listGraphClue.getVertex().get(3));
+		System.out.println(challengeElection.size());
 		putRectanglesChallenge();
 	}
 	@FXML
 	void buttonGaryC(ActionEvent event) {
 		user.setDestinyClue((AdjVertex<String>) listGraphClue.getVertex().get(4));
+		challengeElection.add(listGraphClue.getVertex().get(4));
+		System.out.println(challengeElection.size());
 		putRectanglesChallenge();
 	}
-	
+	@FXML
+	boolean calificateElectionChallenge(ActionEvent event) {
+		double distance=0;
+		for(int s=0;s<challengeElection.size();s++) {
+			AdjVertex<String> v=(AdjVertex<String>) challengeElection.get(s);
+			distance=distance+v.findEdgeOfVertex(v).getWeight();
+		}
+
+		if(listGraphClue.bfs("Bob's Sponge","Eugene")==distance) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	@FXML
+	boolean calificateElectionMap(ActionEvent event) {
+		double distance=0;
+		for(int s=0;s<mapElection.size();s++) {
+			AdjVertex<String> v=(AdjVertex<String>) mapElection.get(s);
+			distance=distance+v.findEdgeOfVertex(v).getWeight();
+		}
+
+		if(listGraphMap.dijkstra(listGraphMap.getVertex().get(0),listGraphMap.getVertex().get(8))==distance) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	void visibleRectangleCurrent(AdjVertex<String> initial) {
 		switch((String)initial.getValue()) {
 		case "Bob's House":

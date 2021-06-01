@@ -35,5 +35,6 @@
       <Button layoutX="827.0" layoutY="316.0" mnemonicParsing="false" onAction="#buttonPerlitaC" text="Go" />
       <Button layoutX="688.0" layoutY="240.0" mnemonicParsing="false" onAction="#buttonPlantonC" text="Go" />
       <Button layoutX="569.0" layoutY="170.0" mnemonicParsing="false" onAction="#buttonGaryC" text="Go" />
+      <Button layoutX="625.0" layoutY="628.0" mnemonicParsing="false" onAction="#calificateElection" />
    </children>
 </Pane>
