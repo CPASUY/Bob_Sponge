@@ -296,9 +296,10 @@ public class AdjListGraph<T> implements IGraph<T> {
 	
 	public double prim(Vertex<T> from) {
 		AdjVertex<T> r = (AdjVertex<T>) from;
+		double distance[] = new double[numVertex];
 		double totalWeight=-1;
-		for(Vertex<T> u : vertex) {
-			distance[u.getIndex()]=INFINITE;
+		for(int i = 0;i<numVertex;i++) {
+			distance[i]=INFINITE;
 		}
 		distance[r.getIndex()]=0;
 		PriorityQueue<AdjVertex<T>> queue = new PriorityQueue<>();

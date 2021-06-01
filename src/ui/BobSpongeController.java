@@ -307,12 +307,9 @@ public class BobSpongeController {
 		listGraphClue.addEdge("Gary", "Calamardo");
 		listGraphClue.addEdge("Calamardo", "Larry");
 		listGraphClue.addEdge("Calamardo", "Planton");
-<<<<<<< HEAD
 		listGraphClue.addEdge("Planton","Perlita");
 		listGraphClue.addEdge("Planton","Larry");
-=======
 		listGraphClue.addEdge("Eugene","Perlita");
->>>>>>> b964298a7abd1e7eb700aead1a96594c36117883
 		listGraphClue.addEdge("Larry", "Perlita");
 		listGraphClue.addEdge("Perlita", "Eugene");
 	}
