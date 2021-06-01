@@ -17,8 +17,10 @@ public class AdjListGraph<T> implements IGraph<T> {
 	private int numEdges;
 	private ArrayList <Edge<T>> edges;
 	private ArrayList<Vertex<T>> vertex;
+	private ArrayList<AdjVertex<T>> vertexDijkstra;
 	private HashMap<T, AdjVertex<T>> adjList;
-	private PriorityQueue<Vertex<T>> pq;
+	private PriorityQueue<AdjVertex<T>> pq;
+	private int fathers[] = new int[100];
 	private boolean visited[];
 	private double distance[];
 	public AdjListGraph(boolean d, boolean w,int n) {
@@ -29,6 +31,7 @@ public class AdjListGraph<T> implements IGraph<T> {
 		visited=new boolean[n];
 		distance=new double[n];
 		vertex= new ArrayList<Vertex<T>>();
+		vertexDijkstra= new ArrayList<AdjVertex<T>>();
 		edges = new ArrayList<Edge<T>>();
 		adjList = new HashMap<>();
 	}
@@ -45,6 +48,7 @@ public class AdjListGraph<T> implements IGraph<T> {
 			adjList.put(element,v);
 			v.setIndex(numVertex);
 			vertex.add(v);
+			vertexDijkstra.add(v);
 			numVertex++;
 		}
 	}
@@ -150,6 +154,11 @@ public class AdjListGraph<T> implements IGraph<T> {
 	public ArrayList<Vertex<T>> getVertex() {
 		return vertex;
 	}
+	
+	public ArrayList<AdjVertex<T>> getVertexDijkstra() {
+		return vertexDijkstra;
+	}
+	
 	public void setVertex(ArrayList<Vertex<T>> vertex) {
 		this.vertex = vertex;
 	}
@@ -224,10 +233,10 @@ public class AdjListGraph<T> implements IGraph<T> {
 		return weights;
 	}
 	
-	public int dijkstra(Vertex<T> from,Vertex<T> destination) {
+	public int dijkstra(AdjVertex<T> from,AdjVertex<T> destination) {
 		int distance[] = new int[numVertex]; 
 	    Set<Integer> visited = new HashSet<Integer>();;
-		pq = new PriorityQueue<Vertex<T>>();
+		pq = new PriorityQueue<AdjVertex<T>>();
 		 
 			for (int i = 0; i < numVertex; i++) {
 	            distance[i] = Integer.MAX_VALUE;
@@ -235,9 +244,8 @@ public class AdjListGraph<T> implements IGraph<T> {
 			pq.add(from);
 			distance[from.getIndex()] = 0;
 			while (visited.size() != numVertex) { 
-				 
 				            int u = pq.remove().getIndex();
-				       
+				            
 				            visited.add(u); 
 				            graph_adjacentNodes(u,distance,visited); 
 				        }
@@ -245,27 +253,22 @@ public class AdjListGraph<T> implements IGraph<T> {
 	}
 	
 	private void graph_adjacentNodes(int u,int[]distance,Set<Integer> visited)   { 
-        int edgeDistance = -1; 
+        
+		int edgeDistance = -1;
         int newDistance = -1; 
-   
-     
-        for (int i = 0; i < adjList.get(u).getAdjList().size(); i++) { 
-            Edge<T> v = adjList.get(u).getAdjList().get(i); 
-            
-            if (!visited.contains(v.getDestination().getIndex())) { 
-                edgeDistance = (int) v.getWeight(); 
+        for (int i = 0; i < vertexDijkstra.get(u).getAdjList().size(); i++) { 
+        	AdjVertex<T> v = vertexDijkstra.get(u).getAdjList().get(i).getDestination(); 
+            if (!visited.contains(v.getIndex())) {
+            	edgeDistance = (int) vertexDijkstra.get(u).getAdjList().get(i).getWeight();
                 newDistance = distance[u] + edgeDistance; 
-   
-                if (newDistance < distance[v.getDestination().getIndex()]) 
-                    distance[v.getDestination().getIndex()] = newDistance; 
-                
-                pq.add(v.getDestination()); 
+                if (newDistance < distance[v.getIndex()]) 
+                    distance[v.getIndex()] = newDistance;
+                pq.add(v); 
             } 
-        } 
+        }
     } 
 
 	public void kruskal() {
-		int fathers[] = new int[100];
 		for(int i=0;i<fathers.length;i++) {
 			fathers[i] = i;
 		}
@@ -275,12 +278,11 @@ public class AdjListGraph<T> implements IGraph<T> {
 		Collections.sort(edges);
 		int origin,destination,weight;
 		while(edgesGraph < numVertex-1 && count<numEdges) {
-			origin = edges.get(count).getInitialMatrix().getIndex();
-			destination = edges.get(count).getDestinationMatrix().getIndex();
+			origin = edges.get(count).getInitial().getIndex();
+			destination = edges.get(count).getDestination().getIndex();
 			weight = (int)edges.get(count).getWeight();
-			
-			if(find(origin,fathers) != find(destination,fathers)) {
-				unite(origin,destination,fathers);
+			if(find(origin) != find(destination)) {
+				unite(origin,destination);
 				totalWeight +=weight;
 				System.out.println(" " + origin + " ----->  " + destination + ": " + weight);
 				edgesGraph++;
@@ -319,16 +321,16 @@ public class AdjListGraph<T> implements IGraph<T> {
 		return totalWeight;
 	}
 	
-	private int find(int x,int[]fathers) {
+	private int find(int x) {
 		if(fathers[x] == x) {
 			return x;
 		}
-		return find(fathers[x],fathers);
+		return find(fathers[x]);
 	}
 	
-	private void unite(int x,int y,int[]fathers) {
-		int fx = find(x,fathers);
-		int fy = find(y,fathers);
+	private void unite(int x,int y) {
+		int fx = find(x);
+		int fy = find(y);
 		fathers[fx] = fy;
 	}
 	
