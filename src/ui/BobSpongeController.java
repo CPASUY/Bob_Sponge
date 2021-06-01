@@ -41,8 +41,6 @@ public class BobSpongeController {
 	@FXML
     private TextField textNickname;
 	private Stage stage;
-
-	private AdjListGraph<String> listGraph;
 	@FXML
 	private Rectangle rectangleBOB;
 	@FXML
@@ -84,6 +82,7 @@ public class BobSpongeController {
 	private AdjListGraph<String> listGraphClue2;
 	private UserManagment<String> um;
 	private ArrayList<Vertex<String>> challengeElection;
+	private ArrayList<Vertex<String>> challenge2Election;
 	private ArrayList<Vertex<String>> mapElection;
 
 
@@ -94,6 +93,7 @@ public class BobSpongeController {
 		listGraphClue2=new AdjListGraph<String>(false,false,7);
 		um=new UserManagment<String>();
 		challengeElection=new ArrayList<Vertex<String>>();
+		challenge2Election=new ArrayList<Vertex<String>>();
 		mapElection=new ArrayList<Vertex<String>>();
 	}
 	public void initialize() {
@@ -312,6 +312,10 @@ public class BobSpongeController {
 		initClue3Edges();
 		loadChallenge();
 		user.setInitialClue((AdjVertex<String>) listGraphClue.getVertex().get(0));
+		long startTime = System.currentTimeMillis();
+		while(System.currentTimeMillis()-startTime<3000) {
+		}
+		loadMap();
 	}
 	public void initClue3Vertex() {
 		listGraphClue.addVertex("Bob's Sponge");
