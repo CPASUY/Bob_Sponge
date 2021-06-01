@@ -173,6 +173,18 @@ public class BobSpongeController {
 			e.printStackTrace();
 		}
 	}
+	public void loadClue2(){
+		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Clue2.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	public void loadSignUp(){
 		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("SignUp.fxml"));
 		fxmload.setController(this);
@@ -220,9 +232,13 @@ public class BobSpongeController {
 	void nextClue3(ActionEvent event) {
 		loadSignUp();
 	}
+    @FXML
+    void nextClue2(ActionEvent event) {
+    	loadClue3();
+    }
 	@FXML
 	void nextRules(ActionEvent event) {
-		loadClue3();
+		loadClue2();
 	}
 	@FXML
 	void nextGame(ActionEvent event) {
@@ -496,7 +512,7 @@ public class BobSpongeController {
 			distance=distance+v.findEdgeOfVertex(v).getWeight();
 		}
 
-		if(listGraphMap.dijkstra(listGraphMap.getVertex().get(0),listGraphMap.getVertex().get(8))==distance) {
+		if(listGraphMap.dijkstra((AdjVertex<String>)listGraphMap.getVertex().get(0),(AdjVertex<String>)listGraphMap.getVertex().get(8))==distance) {
 			return true;
 		}else {
 			return false;
