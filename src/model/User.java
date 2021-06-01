@@ -16,12 +16,15 @@ public class User <T> implements Serializable{
 	private AdjVertex<T> destinyMap;
 	private AdjVertex<T> initialClue;
 	private AdjVertex<T> destinyClue;
+	private AdjVertex<T> initialClue2;
+	private AdjVertex<T> destinyClue2;
 	private User <T>  father;
+	private boolean startClue2;
 	
 	public User(String n,double s) {
 		nickname = n;
 		score = s;
-
+		startClue2= false;
 	}
 	public User<T> getFather() {
 		return father;
@@ -100,5 +103,32 @@ public class User <T> implements Serializable{
 				d.add(initialClue.getAdjList().get(i).getDestination());
 		}
 		return d;
+	}
+	
+	public ArrayList<AdjVertex<T>> adjChallenge2() {
+		ArrayList<AdjVertex<T>> d = new ArrayList<AdjVertex<T>>();
+		for (int i=0; i<initialClue2.getAdjList().size(); i++) {
+				d.add(initialClue2.getAdjList().get(i).getDestination());
+		}
+		return d;
+	}
+	
+	public AdjVertex<T> getInitialClue2() {
+		return initialClue2;
+	}
+	public void setInitialClue2(AdjVertex<T> initialClue2) {
+		this.initialClue2 = initialClue2;
+	}
+	public AdjVertex<T> getDestinyClue2() {
+		return destinyClue2;
+	}
+	public void setDestinyClue2(AdjVertex<T> destinyClue2) {
+		this.destinyClue2 = destinyClue2;
+	}
+	public boolean isStartClue2() {
+		return startClue2;
+	}
+	public void setStartClue2(boolean startClue2) {
+		this.startClue2 = startClue2;
 	}
 }
