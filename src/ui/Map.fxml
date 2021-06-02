@@ -126,5 +126,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="buton" layoutX="253.0" layoutY="567.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="166.0" scaleX="0.5" scaleY="0.5" visible="false">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" scaleX="1.5" scaleY="1.5">
+               <image>
+                  <Image url="@../../images/Buttons/Path.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </Pane>

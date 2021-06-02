@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -42,10 +43,6 @@ public class BobSpongeController {
 	@FXML
     private TextField textNickname;
 	private Stage stage;
-<<<<<<< HEAD
-=======
-	private AdjListGraph<String> listGraph;
->>>>>>> 071e5c3318ede35a8bf0cf6c1cd9224c53c822bc
 	@FXML
 	private Rectangle rectangleBOB;
 	@FXML
@@ -94,6 +91,10 @@ public class BobSpongeController {
 	private Rectangle rectangleLettuce;
 	@FXML
 	private Rectangle rectangleBacon;
+
+    @FXML
+    private Button buton;
+
 	
 	User<String> user;
 	private AdjListGraph<String> listGraphMap;
@@ -340,6 +341,7 @@ public class BobSpongeController {
 	 }
 	 @FXML
 	 void clue1(ActionEvent event) {
+		 buton.setVisible(true);
 	}
 
 	@FXML
