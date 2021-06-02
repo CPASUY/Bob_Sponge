@@ -17,6 +17,15 @@ public class UserManagment <T> implements Serializable{
 	private User<T> root;
 	public static final String USERS_FILE_NAME="data/Users.bbd";
 
+	
+	public User<T> getRoot() {
+		return root;
+	}
+
+	public void setRoot(User<T> root) {
+		this.root = root;
+	}
+
 	public UserManagment() {
 		/*try {
 			loadRootUsers();
