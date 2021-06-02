@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -91,11 +92,18 @@ public class BobSpongeController {
 	private Rectangle rectangleLettuce;
 	@FXML
 	private Rectangle rectangleBacon;
-
+	@FXML
+	private Button idButtonClue2;
+	@FXML
+	private Button idButtonClue3;
+	private boolean ischallenge2;
+	private boolean ischallenge3;
+	private boolean ischallenge1;
+    @FXML
+    private Label idLabel;
     @FXML
     private Button buton;
-
-	
+ 	
 	User<String> user;
 	private AdjListGraph<String> listGraphMap;
 	private AdjListGraph<String> listGraphClue;
@@ -108,6 +116,9 @@ public class BobSpongeController {
 
 	public BobSpongeController(Stage s) throws IOException {
 		stage=s;
+		ischallenge2=false;
+		ischallenge3=false;
+		ischallenge1=false;
 		s.setResizable(false);
 		listGraphMap=new AdjListGraph<String>(false,true,9);
 		listGraphClue=new AdjListGraph<String>(false,false,8);
@@ -283,6 +294,15 @@ public class BobSpongeController {
 			root = fxmload.load();
 			basePane.getChildren().clear();
 			basePane.setCenter(root);
+			if(ischallenge2) {
+				idButtonClue2.setVisible(false);
+			}
+			if(ischallenge3) {
+				idButtonClue3.setVisible(false);
+			}
+			if(ischallenge1) {
+				buton.setVisible(true);
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -341,6 +361,7 @@ public class BobSpongeController {
 	 }
 	 @FXML
 	 void clue1(ActionEvent event) {
+		 ischallenge1=true;
 		 buton.setVisible(true);
 	}
 
@@ -644,7 +665,8 @@ public class BobSpongeController {
 	}
 	
 	@FXML
-	boolean calificateElectionChallenge(ActionEvent event) {
+	void calificateElectionChallenge(ActionEvent event) {
+		ischallenge3=true;
 		double distance=0;
 		for(int s=0;s<challengeElection.size();s++) {
 			AdjVertex<String> v=(AdjVertex<String>) challengeElection.get(s);
@@ -652,13 +674,15 @@ public class BobSpongeController {
 		}
 
 		if(listGraphClue.bfs("Bob's Sponge","Eugene")==distance) {
-			return true;
+			user.setValidateC3(true);
+			loadMap();
 		}else {
-			return false;
+			loadMap();
 		}
 	}
 	@FXML
-	boolean calificateElectionChallenge2(ActionEvent event) {
+	void calificateElectionChallenge2(ActionEvent event) {
+		ischallenge2=true;
 		double [] distances=new double[challenge2Election.size()];
 		for(int s=0;s<distances.length;s++) {
 			if(distances[s]==0) {
@@ -674,9 +698,10 @@ public class BobSpongeController {
 			}
 		}
 		if(listGraphClue2.kruskal()==distance) {
-			return true;
+			user.setValidateC2(true);
+			loadMap();
 		}else {
-			return false;
+			loadMap();
 		}
 	}
 	boolean findNumber(double[]a,double n) {
@@ -688,7 +713,7 @@ public class BobSpongeController {
 		return false;
 	}
 	@FXML
-	boolean calificateElectionMap(ActionEvent event) {
+	void calificateElectionMap(ActionEvent event) {
 		double distance=0;
 		for(int s=0;s<mapElection.size();s++) {
 			AdjVertex<String> v=(AdjVertex<String>) mapElection.get(s);
@@ -699,9 +724,7 @@ public class BobSpongeController {
 			user.setEndTime(System.currentTimeMillis());
 			int score=(int) ((user.getEndTime()-user.getStartTime())/1000);
 			user.setScore(score);
-			return true;
-		}else {
-			return false;
+			loadPlayGame();
 		}
 	}
 	

@@ -26,7 +26,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="475.0" layoutY="628.0" mnemonicParsing="false" onAction="#clue2" scaleX="0.8" scaleY="0.8">
+      <Button fx:id="idButtonClue2" layoutX="475.0" layoutY="628.0" mnemonicParsing="false" onAction="#clue2" scaleX="0.8" scaleY="0.8">
          <graphic>
             <ImageView fitHeight="15.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" scaleX="2.5" scaleY="3.0">
                <image>
@@ -38,7 +38,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="608.0" layoutY="628.0" mnemonicParsing="false" onAction="#clue3" scaleX="0.8" scaleY="0.8">
+      <Button fx:id="idButtonClue3" layoutX="608.0" layoutY="628.0" mnemonicParsing="false" onAction="#clue3" scaleX="0.8" scaleY="0.8">
          <graphic>
             <ImageView fitHeight="16.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true" scaleX="2.5" scaleY="2.8">
                <image>

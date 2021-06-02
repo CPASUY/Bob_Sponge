@@ -16,14 +16,30 @@ public class User <T> implements Serializable{
 	private AdjVertex<T> destinyClue2;
 	private long startTime;
 	private long endTime;
+	private boolean validateC2;
+	private boolean validateC3;
 	
 	public User(String n,int s) {
 		nickname = n;
 		score = s;
 		startClue2= false;
+		validateC2=false;
+		validateC3=false;
 	}
 	public long getStartTime() {
 		return startTime;
+	}
+	public boolean isValidateC2() {
+		return validateC2;
+	}
+	public void setValidateC2(boolean validateC2) {
+		this.validateC2 = validateC2;
+	}
+	public boolean isValidateC3() {
+		return validateC3;
+	}
+	public void setValidateC3(boolean validateC3) {
+		this.validateC3 = validateC3;
 	}
 	public void setStartTime(long startTime) {
 		this.startTime = startTime;
