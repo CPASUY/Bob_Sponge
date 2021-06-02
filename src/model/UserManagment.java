@@ -10,21 +10,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class UserManagment <T> implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private User<T> root;
 	public static final String USERS_FILE_NAME="data/Users.bbd";
 
 	public UserManagment() {
-		/*try {
+		try {
 			loadRootUsers();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 	
 	public void addPlayer(User <T> u)  {

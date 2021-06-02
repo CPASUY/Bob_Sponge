@@ -1,7 +1,9 @@
 package model;
 
-public class Vertex<T> {
-	
+import java.io.Serializable;
+
+public class Vertex<T> implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private T value;
 	private boolean usable;
 	private int index;

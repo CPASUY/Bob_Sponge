@@ -3,13 +3,9 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 public class User <T> implements Serializable{
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String nickname;
-	private double score;
+	private int score;
 	private User <T>  left;
 	private User <T>  right;
 	private AdjVertex<T> initialMap;
@@ -18,14 +14,29 @@ public class User <T> implements Serializable{
 	private AdjVertex<T> destinyClue;
 	private AdjVertex<T> initialClue2;
 	private AdjVertex<T> destinyClue2;
-	private User <T>  father;
-	private boolean startClue2;
+	private long startTime;
+	private long endTime;
 	
-	public User(String n,double s) {
+	public User(String n,int s) {
 		nickname = n;
 		score = s;
 		startClue2= false;
 	}
+	public long getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(long startTime) {
+		this.startTime = startTime;
+	}
+	public long getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(long endTime) {
+		this.endTime = endTime;
+	}
+	private User <T>  father;
+	private boolean startClue2;
+	
 	public User<T> getFather() {
 		return father;
 	}
@@ -81,11 +92,11 @@ public class User <T> implements Serializable{
 		this.nickname = nickname;
 	}
 
-	public double getScore() {
+	public int getScore() {
 		return score;
 	}
 
-	public void setScore(double score) {
+	public void setScore(int score) {
 		this.score = score;
 	}
 	
