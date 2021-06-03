@@ -66,6 +66,9 @@ class AdjListGraphTest {
 		adjL.addVertex("Bob's House");
 		assertEquals(adjL.getVertex().get(0).getValue(),"Bob's House");
 		assertEquals(adjL.getVertex().get(0).getIndex(),0);
+		adjL.addVertex("Patrick's House");
+		assertEquals(adjL.getVertex().get(1).getValue(),"Patrick's House");
+		assertEquals(adjL.getVertex().get(1).getIndex(),1);
 		assertEquals(adjL.isDirected(),false);
 	}
 	
@@ -81,20 +84,54 @@ class AdjListGraphTest {
 	@Test
 	void test3() {
 		setup3();
-		assertEquals(adjL.bfs("Massage Shop","Vehicle School"),2);
-		assertEquals(adjL.kruskal(),205);
 		assertEquals(adjL.dijkstra(adjL.searchAdjVertex("Massage Shop"),adjL.searchAdjVertex("Patrick's House")),80);
 		assertEquals(adjL.dijkstra(adjL.searchAdjVertex("Massage Shop"),adjL.searchAdjVertex("Bob's House")),100);
-		assertEquals(adjL.searchAdjVertex("Planton's Restaurant").getAdjList().get(0).getWeight(),15);
-		//assertEquals(adjL.prim(adjL.getVertex().get(0)),140);
 	}
 	
 	@Test
 	void test4(){
 		setup2();
 		boolean removed = false;
+		boolean removedV = false;
 		assertNotNull(adjL.searchAdjVertex("Scissors Shop"),"its null");
 		removed = adjL.removeEdge("Bob's House", "Patrick's House");
-		assertEquals(removed,true);
+		assertEquals(removed, true);
+		removedV = adjL.removeVertex("Bob's House");
+		assertEquals(removedV, true);
+	}
+	@Test
+	void test5(){
+		setup3();
+		assertEquals(adjL.bfs("Massage Shop","Vehicle School"),2);
+		assertEquals(adjL.bfs("Patrick's House","Krabby Crustacio"),1);
+	}
+	
+	@Test
+	void test6() {
+		setup3();
+		assertEquals(adjL.kruskal(),205);
+	}
+	
+	@Test
+	void test7() {
+		setup3();
+		assertEquals(adjL.searchAdjVertex("Planton's Restaurant").getAdjList().get(0).getWeight(),15);
+		assertEquals(adjL.searchAdjVertex("Planton's Restaurant").getAdjList().get(1).getWeight(),20);
+		assertEquals(adjL.searchAdjVertex("Krabby Crustacio").getAdjList().get(0).getWeight(),140);
+	}
+	
+	@Test
+	void test8() {
+		setup3();
+		assertEquals(adjL.prim(adjL.getVertex().get(0)),924);
+		assertEquals(adjL.isDirected(),false);
+		assertEquals(adjL.isWeighted(),true);
+	}
+	
+	@Test
+	void test9() {
+		setup3();
+		assertNotEquals(adjL.getMatrixOfList(),adjL.floyd_Warshall());
+		adjL.dfs("Bob's House");
 	}
 }
