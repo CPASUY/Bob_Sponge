@@ -141,5 +141,10 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <ImageView fx:id="idCostImage" fitHeight="45.0" fitWidth="76.0" layoutX="457.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../../images/Buttons/current.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
