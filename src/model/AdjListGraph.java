@@ -234,7 +234,10 @@ public class AdjListGraph<T> implements IGraph<T> {
 		return weights;
 	}
 	
-	public int dijkstra(AdjVertex<T> from,AdjVertex<T> destination) {
+	@Override
+	public int dijkstra(T initialNode,T destinyNode) {
+		AdjVertex<T> from=searchAdjVertex(initialNode);
+		AdjVertex<T> destiny=searchAdjVertex(destinyNode);
 		int distance[] = new int[numVertex]; 
 	    Set<Integer> visited = new HashSet<Integer>();;
 		pq = new PriorityQueue<AdjVertex<T>>();
@@ -250,7 +253,7 @@ public class AdjListGraph<T> implements IGraph<T> {
 				            visited.add(u); 
 				            graph_adjacentNodes(u,distance,visited); 
 				        }
-		return distance[destination.getIndex()];
+		return distance[destiny.getIndex()];
 	}
 	
 	private void graph_adjacentNodes(int u,int[]distance,Set<Integer> visited)   { 

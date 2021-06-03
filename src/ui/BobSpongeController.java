@@ -21,6 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -102,6 +103,8 @@ public class BobSpongeController {
 	private Label cost;
 	@FXML
 	private Label idTime;
+	@FXML
+	private ImageView idCostImage;
 	
 	private boolean ischallenge2;
 	private boolean ischallenge3;
@@ -315,6 +318,7 @@ public class BobSpongeController {
 			if(ischallenge2) {
 				idButtonClue2.setVisible(false);
 				cost.setText(String.valueOf(user.getWeightMap()));
+				idCostImage.setVisible(true);
 				cost.setVisible(true);
 			}
 			if(ischallenge3) {
@@ -782,7 +786,7 @@ public class BobSpongeController {
 	}
 	@FXML
 	void calificateElectionMap(ActionEvent event) {
-		if(listGraphMap.dijkstra(listGraphMap.getVertexDijkstra().get(0),listGraphMap.getVertexDijkstra().get(8))==user.getWeightMap()) {
+		if(listGraphMap.dijkstra("Bob's House","Krabby Crustacio")==user.getWeightMap()) {
 			user.setEndTime(System.currentTimeMillis());
 			int score=(int) ((user.getEndTime()-user.getStartTime())/1000);
 			user.setScore(score);

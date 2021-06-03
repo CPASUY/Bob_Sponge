@@ -171,9 +171,11 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 		}
 		return matrix;
 	}
-		
-	public void dijkstra(Vertex<T> from) {
 	
+	@Override
+	public int dijkstra(T initialNode, T destinyNode) {
+		Vertex<T> from=searchVertex(initialNode);
+		Vertex<T> destiny = searchVertex(destinyNode);
 		double flag[] = new double [numVertex+1];
 		double min;
 		double[] distance = new double[adjMatrix.length];
@@ -207,13 +209,7 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 			}
 			
 		}
-		
-	
-		for(int l=0;l<numVertex;l++) {
-			if(vertices.get(l) != from) {
-			System.out.println("Origin " + from.getValue() + " destine : " + vertices.get(l) + "minimal cost: "  + distance[i]);
-			}
-		}
+		return (int) distance[destiny.getIndex()];
 		
 	}
 	

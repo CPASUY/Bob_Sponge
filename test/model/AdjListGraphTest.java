@@ -83,8 +83,8 @@ class AdjListGraphTest {
 		setup3();
 		assertEquals(adjL.bfs("Massage Shop","Vehicle School"),2);
 		assertEquals(adjL.kruskal(),205);
-		assertEquals(adjL.dijkstra(adjL.searchAdjVertex("Massage Shop"),adjL.searchAdjVertex("Patrick's House")),80);
-		assertEquals(adjL.dijkstra(adjL.searchAdjVertex("Massage Shop"),adjL.searchAdjVertex("Bob's House")),100);
+		assertEquals(adjL.dijkstra("Massage Shop","Patrick's House"),80);
+		assertEquals(adjL.dijkstra("Massage Shop","Bob's House"),100);
 		assertEquals(adjL.searchAdjVertex("Planton's Restaurant").getAdjList().get(0).getWeight(),15);
 		//assertEquals(adjL.prim(adjL.getVertex().get(0)),140);
 	}
