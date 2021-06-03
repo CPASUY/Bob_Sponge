@@ -289,6 +289,11 @@ public class BobSpongeController {
     		rectangleCards.setVisible(true);
     		rectangleCalam.setStroke(Color.BLUE);
     		rectangleCalam.setVisible(true);
+    		idButtonClue2.setVisible(true);
+			idCostImage.setVisible(false);
+			cost.setVisible(false);
+			buton.setVisible(false);
+			idButtonClue3.setVisible(true);
     	}
 	}
 	@FXML
@@ -317,9 +322,11 @@ public class BobSpongeController {
 			basePane.setCenter(root);
 			if(ischallenge2) {
 				idButtonClue2.setVisible(false);
-				cost.setText(String.valueOf(user.getWeightMap()));
-				idCostImage.setVisible(true);
-				cost.setVisible(true);
+				if(user.isValidateC2()) {
+					cost.setText(String.valueOf(user.getWeightMap()));
+					idCostImage.setVisible(true);
+					cost.setVisible(true);	
+				}
 			}
 			if(ischallenge3) {
 				idButtonClue3.setVisible(false);
@@ -765,7 +772,7 @@ public class BobSpongeController {
 				distance=distance+v1.findEdgeOfVertexFinal(v2).getWeight();
 			}
 		}
-		if(listGraphClue2.kruskal()==distance) {
+		if(listGraphClue2.kruskal()== (int)distance) {
 			user.setValidateC2(true);
 			loadMap();
 			visibleRectangleCurrent(user.getInitialMap());
