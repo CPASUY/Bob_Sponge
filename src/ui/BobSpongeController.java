@@ -4,7 +4,8 @@ package ui;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 import model.AdjListGraph;
 import model.AdjVertex;
 import model.User;
@@ -96,6 +98,11 @@ public class BobSpongeController {
 	private Button idButtonClue2;
 	@FXML
 	private Button idButtonClue3;
+	@FXML
+	private Label cost;
+	@FXML
+	private Label idTime;
+	
 	private boolean ischallenge2;
 	private boolean ischallenge3;
 	private boolean ischallenge1;
@@ -112,6 +119,7 @@ public class BobSpongeController {
 	private ArrayList<Vertex<String>> challengeElection;
 	private ArrayList<Vertex<String>> challenge2Election;
 	private ArrayList<Vertex<String>> mapElection;
+	private int count;
 
 
 	public BobSpongeController(Stage s) throws IOException {
@@ -127,6 +135,7 @@ public class BobSpongeController {
 		challengeElection=new ArrayList<Vertex<String>>();
 		challenge2Election=new ArrayList<Vertex<String>>();
 		mapElection=new ArrayList<Vertex<String>>();
+		count = 5;
 	}
 	public void initialize() {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -268,6 +277,15 @@ public class BobSpongeController {
     		um.addPlayer(user);
     		user.setStartTime(System.currentTimeMillis());
     		loadMap();
+    		rectangleBOB.setVisible(true);
+    		rectangleScissor.setStroke(Color.BLUE);
+    		rectangleScissor.setVisible(true);
+    		rectanglePactrick.setStroke(Color.BLUE);
+    		rectanglePactrick.setVisible(true);
+    		rectangleCards.setStroke(Color.BLUE);
+    		rectangleCards.setVisible(true);
+    		rectangleCalam.setStroke(Color.BLUE);
+    		rectangleCalam.setVisible(true);
     	}
 	}
 	@FXML
@@ -296,6 +314,8 @@ public class BobSpongeController {
 			basePane.setCenter(root);
 			if(ischallenge2) {
 				idButtonClue2.setVisible(false);
+				cost.setText(String.valueOf(user.getWeightMap()));
+				cost.setVisible(true);
 			}
 			if(ischallenge3) {
 				idButtonClue3.setVisible(false);
@@ -309,6 +329,19 @@ public class BobSpongeController {
 	}
 	public void loadChallenge2(){
 		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Challenge1.fxml"));
+		fxmload.setController(this);
+		Parent root;
+		try {
+			root = fxmload.load();
+			basePane.getChildren().clear();
+			basePane.setCenter(root);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadDistance(){
+		FXMLLoader fxmload = new FXMLLoader(getClass().getResource("Distance.fxml"));
 		fxmload.setController(this);
 		Parent root;
 		try {
@@ -433,16 +466,26 @@ public class BobSpongeController {
 	}
 	
 	void putRectanglesMap() {
+		
+		
 		if(user.getInitialMap().isAdjacent(user.getDestinyMap())) {
-			user.setInitialMap(user.getDestinyMap());
-			putAllInvisibleMap();
-			visibleRectangleCurrent(user.getInitialMap());
-			visibleRectangleAdjacent(user.adjMap());
+			user.sumWeightMap();
+			cost.setText(String.valueOf(user.getWeightMap()));
+			if(user.getWeightMap() <=140) {
+				user.setInitialMap(user.getDestinyMap());
+				putAllInvisibleMap();
+				visibleRectangleCurrent(user.getInitialMap());
+				visibleRectangleAdjacent(user.adjMap());	
+			}
+			else {
+				loadPlayGame();
+			}
 		}
 	}
 	
 	void putRectanglesChallenge() {
 		if(user.getInitialClue().isAdjacent(user.getDestinyClue())) {
+			user.sumWeightClue();
 			user.setInitialClue(user.getDestinyClue());
 			putAllInvisibleClue3();
 			visibleRectangleCurrent(user.getInitialClue());
@@ -460,6 +503,7 @@ public class BobSpongeController {
 		}
 		else {
 			if(user.getInitialClue2().isAdjacent(user.getDestinyClue2())) {
+				user.sumWeightClue2();
 				user.setInitialClue2(user.getDestinyClue2());
 				putAllInvisibleClue2();
 				visibleRectangleCurrent(user.getInitialClue2());
@@ -665,19 +709,39 @@ public class BobSpongeController {
 	}
 	
 	@FXML
-	void calificateElectionChallenge(ActionEvent event) {
+	void calificateElectionChallenge(ActionEvent event) throws InterruptedException {
 		ischallenge3=true;
 		double distance=0;
 		for(int s=0;s<challengeElection.size();s++) {
 			AdjVertex<String> v=(AdjVertex<String>) challengeElection.get(s);
 			distance=distance+v.findEdgeOfVertex(v).getWeight();
 		}
-
 		if(listGraphClue.bfs("Bob's Sponge","Eugene")==distance) {
 			user.setValidateC3(true);
-			loadMap();
+			loadDistance();
+			Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+   
+			    @Override
+			    public void handle(ActionEvent event) {
+			    	idTime.setText(String.valueOf(count));
+			    	count--;
+			        if(count == -1) {
+			        	loadMap();
+			        	visibleRectangleCurrent(user.getInitialMap());
+						visibleRectangleAdjacent(user.adjMap());
+			        	count = 0;
+			        }
+			    }
+			}));
+			timeline.setCycleCount(6);
+			timeline.play();
+			visibleRectangleCurrent(user.getInitialMap());
+			visibleRectangleAdjacent(user.adjMap());
+			
 		}else {
 			loadMap();
+			visibleRectangleCurrent(user.getInitialMap());
+			visibleRectangleAdjacent(user.adjMap());
 		}
 	}
 	@FXML
@@ -700,8 +764,12 @@ public class BobSpongeController {
 		if(listGraphClue2.kruskal()==distance) {
 			user.setValidateC2(true);
 			loadMap();
+			visibleRectangleCurrent(user.getInitialMap());
+			visibleRectangleAdjacent(user.adjMap());
 		}else {
 			loadMap();
+			visibleRectangleCurrent(user.getInitialMap());
+			visibleRectangleAdjacent(user.adjMap());
 		}
 	}
 	boolean findNumber(double[]a,double n) {
@@ -714,13 +782,7 @@ public class BobSpongeController {
 	}
 	@FXML
 	void calificateElectionMap(ActionEvent event) {
-		double distance=0;
-		for(int s=0;s<mapElection.size();s++) {
-			AdjVertex<String> v=(AdjVertex<String>) mapElection.get(s);
-			distance=distance+v.findEdgeOfVertex(v).getWeight();
-		}
-
-		if(listGraphMap.dijkstra(listGraphMap.getVertexDijkstra().get(0),listGraphMap.getVertexDijkstra().get(8))==distance) {
+		if(listGraphMap.dijkstra(listGraphMap.getVertexDijkstra().get(0),listGraphMap.getVertexDijkstra().get(8))==user.getWeightMap()) {
 			user.setEndTime(System.currentTimeMillis());
 			int score=(int) ((user.getEndTime()-user.getStartTime())/1000);
 			user.setScore(score);
@@ -933,7 +995,6 @@ public class BobSpongeController {
 	}
 	
 	void putAllInvisibleMap() {
-		
 		rectangleBOB.setVisible(false);
 		rectangleBurger.setVisible(false);
 		rectanglePactrick.setVisible(false);
@@ -965,5 +1026,9 @@ public class BobSpongeController {
 		rectangleOnion.setVisible(false);
 		rectangleLettuce.setVisible(false);
 	}
-
+	
+	
+	
+	
+	
 }
