@@ -18,6 +18,9 @@ public class User <T> implements Serializable{
 	private long endTime;
 	private boolean validateC2;
 	private boolean validateC3;
+	private int weightMap;
+	private int weightClue;
+	private int weightClue2;
 	
 	public User(String n,int s) {
 		nickname = n;
@@ -25,6 +28,9 @@ public class User <T> implements Serializable{
 		startClue2= false;
 		validateC2=false;
 		validateC3=false;
+		weightMap= 0;
+		weightClue =0;
+		weightClue2=0;
 	}
 	public long getStartTime() {
 		return startTime;
@@ -140,6 +146,30 @@ public class User <T> implements Serializable{
 		return d;
 	}
 	
+	public void sumWeightMap() {
+		for(int i =0;i<initialMap.getAdjList().size();i++) {
+		if(initialMap.getAdjList().get(i).getInitial() == initialMap && initialMap.getAdjList().get(i).getDestination() == destinyMap ) {
+				weightMap+=initialMap.getAdjList().get(i).getWeight();
+			}
+		}
+	}
+	
+	public void sumWeightClue() {
+		for(int i =0;i<initialClue.getAdjList().size();i++) {
+		if(initialClue.getAdjList().get(i).getInitial() == initialClue && initialClue.getAdjList().get(i).getDestination() == destinyClue) {
+				weightClue+=initialClue.getAdjList().get(i).getWeight();
+			}
+		}
+	}
+	
+	public void sumWeightClue2() {
+		for(int i =0;i<initialClue2.getAdjList().size();i++) {
+		if(initialClue2.getAdjList().get(i).getInitial() == initialClue2 && initialClue2.getAdjList().get(i).getDestination() == destinyClue2) {
+				weightClue2+=initialClue2.getAdjList().get(i).getWeight();
+			}
+		}
+	}
+	
 	public AdjVertex<T> getInitialClue2() {
 		return initialClue2;
 	}
@@ -157,5 +187,23 @@ public class User <T> implements Serializable{
 	}
 	public void setStartClue2(boolean startClue2) {
 		this.startClue2 = startClue2;
+	}
+	public int getWeightMap() {
+		return weightMap;
+	}
+	public void setWeightMap(int weightMap) {
+		this.weightMap = weightMap;
+	}
+	public int getWeightClue() {
+		return weightClue;
+	}
+	public void setWeightClue(int weightClue) {
+		this.weightClue = weightClue;
+	}
+	public int getWeightClue2() {
+		return weightClue2;
+	}
+	public void setWeightClue2(int weightClue2) {
+		this.weightClue2 = weightClue2;
 	}
 }

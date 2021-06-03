@@ -12,5 +12,7 @@ public interface IGraph<T>  {
 	public boolean searchInGraph(T element);
 	public void bfs(T initialNode);
 	public void  dfs(T initialNode);
+	public int dijkstra(T initialNode,T destinyNode);
+	public int kruskal();
 	public double[][] floyd_Warshall();
 }

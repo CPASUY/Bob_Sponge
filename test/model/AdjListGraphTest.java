@@ -84,9 +84,9 @@ class AdjListGraphTest {
 	@Test
 	void test3() {
 		setup3();
-		assertEquals(adjL.dijkstra(adjL.searchAdjVertex("Massage Shop"),adjL.searchAdjVertex("Patrick's House")),80);
-		assertEquals(adjL.dijkstra(adjL.searchAdjVertex("Massage Shop"),adjL.searchAdjVertex("Bob's House")),100);
-	}
+		assertEquals(adjL.dijkstra("Massage Shop","Patrick's House"),80);
+		assertEquals(adjL.dijkstra("Massage Shop","Bob's House"),100);
+		}
 	
 	@Test
 	void test4(){

@@ -1,4 +1,6 @@
 package model;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -12,6 +14,7 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	private boolean visited[];
 	private double distance[];
 	private double[][] adjMatrix;
+	private int fathers[] = new int[100];
 	private Map<Integer, Vertex<T>> vertices;
 	private Map<T, Integer> indexVertices;
 	
@@ -171,9 +174,11 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 		}
 		return matrix;
 	}
-		
-	public void dijkstra(Vertex<T> from) {
 	
+	@Override
+	public int dijkstra(T initialNode, T destinyNode) {
+		Vertex<T> from=searchVertex(initialNode);
+		Vertex<T> destiny = searchVertex(destinyNode);
 		double flag[] = new double [numVertex+1];
 		double min;
 		double[] distance = new double[adjMatrix.length];
@@ -207,14 +212,57 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 			}
 			
 		}
+		return (int) distance[destiny.getIndex()];
 		
+	}
 	
-		for(int l=0;l<numVertex;l++) {
-			if(vertices.get(l) != from) {
-			System.out.println("Origin " + from.getValue() + " destine : " + vertices.get(l) + "minimal cost: "  + distance[i]);
+	@Override
+	public int kruskal() {
+		ArrayList<Edge<T>> edges = new ArrayList<Edge<T>>();
+		for(int i=0;i<fathers.length;i++) {
+			fathers[i] = i;
+		}
+		for(int i = 0;i<adjMatrix.length;i++) {
+			for(int j=0;j<adjMatrix.length;j++) {
+				if(adjMatrix[i][j] != 0) {
+					Edge<T> edge = new Edge<T>(searchVertex(i),searchVertex(j),adjMatrix[i][j]);
+					if(!comprobationEdge(edges,edge)) {
+						edges.add(edge);
+					}
+				}
 			}
 		}
 		
+		int totalWeight = 0;
+		int edgesGraph = 0;
+		int count = 0;
+		Collections.sort(edges);
+		int origin,destination,weight;
+		while(edgesGraph < numVertex-1 && count<edges.size()) {
+			origin = edges.get(count).getInitial().getIndex();
+			destination = edges.get(count).getDestination().getIndex();
+			weight = (int)edges.get(count).getWeight();
+			if(find(origin) != find(destination)) {
+				unite(origin,destination);
+				totalWeight +=weight;
+				edgesGraph++;
+			}
+			count++;}
+		
+			return totalWeight;
+	}
+	
+	private int find(int x) {
+		if(fathers[x] == x) {
+			return x;
+		}
+		return find(fathers[x]);
+	}
+	
+	private void unite(int x,int y) {
+		int fx = find(x);
+		int fy = find(y);
+		fathers[fx] = fy;
 	}
 	
 	public double prim(Vertex<T> from, int v) {
@@ -255,6 +303,11 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	public Vertex<T> searchVertex(T element) {
 		return vertices.get(element);
 	}
+	
+	public Vertex<T> searchVertex(int element) {
+		return vertices.get(element);
+	}
+	
 	public Integer searchIndex(T element) {
 		return indexVertices.get(element);
 	}
@@ -293,6 +346,16 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	}
 	public void setWeighted(boolean weighted) {
 		this.weighted = weighted;
+	}
+	
+	public boolean comprobationEdge(ArrayList<Edge<T>> edges, Edge<T>edge) {
+		boolean c = false;
+		for(int i=0;i<edges.size();i++) {
+			if(edges.get(i).getDestination().getValue() == edge.getDestination().getValue() && edges.get(i).getInitial().getValue() == edge.getInitial().getValue()) {
+				c = true;
+			}
+		}
+		return c;
 	}
 
 }
