@@ -271,7 +271,8 @@ public class AdjListGraph<T> implements IGraph<T> {
             } 
         }
     } 
-
+	
+	@Override
 	public int kruskal() {
 		for(int i=0;i<fathers.length;i++) {
 			fathers[i] = i;
