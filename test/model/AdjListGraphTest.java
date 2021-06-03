@@ -66,6 +66,7 @@ class AdjListGraphTest {
 		adjL.addVertex("Bob's House");
 		assertEquals(adjL.getVertex().get(0).getValue(),"Bob's House");
 		assertEquals(adjL.getVertex().get(0).getIndex(),0);
+		assertEquals(adjL.isDirected(),false);
 	}
 	
 	@Test
