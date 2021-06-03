@@ -15,7 +15,7 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	private double distance[];
 	private double[][] adjMatrix;
 	private int fathers[] = new int[100];
-	private Map<Integer, Vertex<T>> vertices;
+	private Map<T, Vertex<T>> vertices;
 	private Map<T, Integer> indexVertices;
 	
 	public AdjMatrixGraph(boolean d, boolean w,int n) {
@@ -45,7 +45,7 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	public void addVertex(T element) {
 		if(!searchInGraph(element)) {
 			Vertex<T> vertex = new Vertex<T>(element);
-			vertices.put(numVertex,vertex);
+			vertices.put(element,vertex);
 			indexVertices.put(element,numVertex);
 			numVertex++;
 		}
@@ -102,14 +102,16 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	@Override
 	public boolean removeEdge(T from, T to) {
 		if (searchInGraph(from) && searchInGraph(to)) {
-			removeEdge(searchVertex(from), searchVertex(to));
+			Vertex<T> f=searchVertex(from);
+			Vertex<T> t=searchVertex(to);
+			removeEdge(f, t);
 			return true;
 		}
 		return false;
 	}
 	public void removeEdge(Vertex<T> from, Vertex<T> to) {
-		Integer x=indexVertices.get(from);
-        Integer y=indexVertices.get(to);
+		Integer x=indexVertices.get(from.getValue());
+        Integer y=indexVertices.get(to.getValue());
 		 if (!isDirected()) {
 			 adjMatrix[x][y] = 0;
 			 adjMatrix[y][x] = 0;
@@ -329,10 +331,10 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 	public void setAdjMatrix(double[][] adjMatrix) {
 		this.adjMatrix = adjMatrix;
 	}
-	public Map<Integer, Vertex<T>> getVertices() {
+	public Map<T, Vertex<T>> getVertices() {
 		return vertices;
 	}
-	public void setVertices(Map<Integer, Vertex<T>> vertices) {
+	public void setVertices(Map<T, Vertex<T>> vertices) {
 		this.vertices = vertices;
 	}
 	public Map<T, Integer> getIndexVertices() {
