@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Vertex<T> implements Serializable{
+public class Vertex<T> implements Comparable<Vertex<T>> , Serializable{
 	private static final long serialVersionUID = 1L;
 	private T value;
 	private boolean usable;
@@ -31,6 +31,15 @@ public class Vertex<T> implements Serializable{
 
 	public void setValue(T value) {
 		this.value = value;
+	}
+	@Override
+	public int compareTo(Vertex<T> o) {
+		if(getIndex()==o.getIndex())  
+			return 0;  
+			else if(getIndex()>o.getIndex())  
+			return 1;  
+			else
+			return -1; 
 	}
 
 	
