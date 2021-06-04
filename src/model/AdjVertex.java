@@ -2,7 +2,7 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AdjVertex<T>  extends Vertex<T> implements Comparable<AdjVertex<T>>, Serializable {
+public class AdjVertex<T>  extends Vertex<T> implements  Serializable {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Edge<T>> edgesList;
 
@@ -34,15 +34,5 @@ public class AdjVertex<T>  extends Vertex<T> implements Comparable<AdjVertex<T>>
 				return true;
 		}
 		return false;
-	}
-
-	@Override
-	public int compareTo(AdjVertex<T> o) {
-		if(getIndex()==o.getIndex())  
-			return 0;  
-			else if(getIndex()>o.getIndex())  
-			return 1;  
-			else
-			return -1; 
 	}
 }
