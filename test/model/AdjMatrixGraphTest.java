@@ -83,8 +83,11 @@ class AdjMatrixGraphTest {
 	void test2() {
 		setup3();
 		boolean removed = false;
+		boolean removedV = false;
 		removed = adjM.removeEdge("Bob's House", "Patrick's House");
 		assertEquals(removed, true);
+		removedV = adjM.removeVertex("Bob's House");
+		assertEquals(removedV, true);
 	}
 	
 	@Test
@@ -105,5 +108,26 @@ class AdjMatrixGraphTest {
 		assertEquals(adjM.dijkstra("Card Shop", "Planton's Restaurant"),22);
 		assertEquals(adjM.dijkstra("Bob's House", "Card Shop"),130);
 		assertEquals(adjM.dijkstra("Massage Shop","Patrick's House"),80);
+	}
+	
+	@Test
+	void test6() {
+		setup4();
+		 adjM.bfs("Bob's House");
+		 adjM.dfs("Card Shop");
+	}
+	
+	@Test
+	void test7() {
+		setup4();
+		assertEquals(adjM.prim("Bob's House", 0),2);
+	}
+	
+	@Test
+	void test8() {
+		setup4();
+		boolean found = false;
+		found = adjM.searchInGraph("Card Shop");
+		assertEquals(found, true);
 	}
 }

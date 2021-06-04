@@ -270,7 +270,7 @@ public class AdjMatrixGraph<T> implements IGraph<T>{
 		fathers[fx] = fy;
 	}
 	
-	public double prim(Vertex<T> from, int v) {
+	public double prim(T from, int v) {
 		int visited[] = new int[numVertex];
 		visited[v] = 1;
 		int h1 = -1;
